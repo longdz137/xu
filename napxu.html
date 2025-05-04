@@ -7,6 +7,7 @@
     <meta name="keywords" content="nạp xu tiktok, nap coin tiktok, mua xu tiktok, giá xu tiktok, dịch vụ tiktok">
     <title>Dịch Vụ Nạp Xu TikTok Chính Hãng | Giá Rẻ & An Toàn</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <style>
         :root {
             --primary-color: #FE2C55;
@@ -41,6 +42,9 @@
             color: var(--light-color);
             padding: 20px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .header-content {
@@ -68,6 +72,7 @@
         
         nav ul li {
             margin-left: 30px;
+            position: relative;
         }
         
         nav ul li a {
@@ -79,6 +84,26 @@
         
         nav ul li a:hover {
             opacity: 0.8;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
         }
         
         .hero {
@@ -122,6 +147,17 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+        }
+        
         .section-title {
             text-align: center;
             margin-bottom: 40px;
@@ -155,11 +191,26 @@
             transition: all 0.3s ease;
             text-align: center;
             border: 1px solid #eee;
+            position: relative;
         }
         
         .pricing-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+            width: 120px;
+            text-align: center;
         }
         
         .pricing-header {
@@ -449,6 +500,179 @@
             resize: vertical;
         }
         
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin: 0;
+        }
+        
+        .close-modal {
+            font-size: 28px;
+            color: #aaa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        /* Cart Styles */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .cart-item-remove {
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 15px;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        /* Checkout Form */
+        .checkout-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .payment-methods {
+            margin: 20px 0;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .payment-method input {
+            margin-right: 10px;
+        }
+        
+        .payment-method-label {
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-method-icon {
+            width: 40px;
+            height: 25px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+        
+        /* Order Success */
+        .order-success {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .order-success i {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .order-success h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
         footer {
             background-color: var(--dark-color);
             color: var(--light-color);
@@ -564,6 +788,12 @@
                 min-width: 100%;
                 margin-bottom: 40px;
             }
+            
+            .modal-content {
+                margin: 20px auto;
+                width: 95%;
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -580,6 +810,12 @@
                     <li><a href="#features">Tính Năng</a></li>
                     <li><a href="#how-it-works">Hướng Dẫn</a></li>
                     <li><a href="#contact">Liên Hệ</a></li>
+                    <li class="cart-icon">
+                        <a href="#" id="cart-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -597,6 +833,7 @@
         <h2 class="section-title">Bảng Giá Nạp Xu TikTok</h2>
         <div class="pricing-table">
             <div class="pricing-card">
+                <div class="pricing-badge">Phổ biến</div>
                 <div class="pricing-header">
                     <h3>Gói Cơ Bản</h3>
                     <div class="price">100.000đ <span>/ 1.300 xu</span></div>
@@ -608,7 +845,7 @@
                         <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
                         <li><i class="fas fa-check"></i> Nạp nhanh 5 phút</li>
                     </ul>
-                    <a href="#" class="btn">Mua Ngay</a>
+                    <button class="btn add-to-cart" data-id="1" data-name="Gói Cơ Bản" data-price="100000" data-coins="1300">Mua Ngay</button>
                 </div>
             </div>
             
@@ -624,11 +861,12 @@
                         <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
                         <li><i class="fas fa-check"></i> Nạp nhanh 5 phút</li>
                     </ul>
-                    <a href="#" class="btn">Mua Ngay</a>
+                    <button class="btn add-to-cart" data-id="2" data-name="Gói Phổ Thông" data-price="200000" data-coins="2700">Mua Ngay</button>
                 </div>
             </div>
             
             <div class="pricing-card">
+                <div class="pricing-badge">Tiết kiệm</div>
                 <div class="pricing-header">
                     <h3>Gói Cao Cấp</h3>
                     <div class="price">500.000đ <span>/ 7.000 xu</span></div>
@@ -640,7 +878,7 @@
                         <li><i class="fas fa-check"></i> Hỗ trợ 24/7 VIP</li>
                         <li><i class="fas fa-check"></i> Nạp nhanh 3 phút</li>
                     </ul>
-                    <a href="#" class="btn">Mua Ngay</a>
+                    <button class="btn add-to-cart" data-id="3" data-name="Gói Cao Cấp" data-price="500000" data-coins="7000">Mua Ngay</button>
                 </div>
             </div>
         </div>
@@ -834,7 +1072,7 @@
                 </div>
             </div>
             <div class="contact-form">
-                <form>
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="name">Họ và tên</label>
                         <input type="text" id="name" class="form-control" required>
@@ -904,37 +1142,359 @@
         </div>
     </footer>
 
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Giỏ Hàng Của Bạn</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items">
+                    <!-- Cart items will be added here dynamically -->
+                    <p class="empty-cart-message">Giỏ hàng của bạn đang trống</p>
+                </div>
+                <div class="cart-total">
+                    <span>Tổng cộng:</span>
+                    <span id="cart-total">0đ</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Tiếp tục mua hàng</button>
+                <button class="btn" id="checkout-button">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thanh Toán</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form class="checkout-form" id="checkout-form">
+                    <div class="form-group">
+                        <label for="customer-name">Họ và tên</label>
+                        <input type="text" id="customer-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-phone">Số điện thoại</label>
+                        <input type="tel" id="customer-phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email</label>
+                        <input type="email" id="customer-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tiktok-id">ID TikTok hoặc SĐT đăng ký</label>
+                        <input type="text" id="tiktok-id" class="form-control" required>
+                        <small class="text-muted">Nhập ID TikTok hoặc số điện thoại/email đăng ký tài khoản TikTok của bạn</small>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h4>Phương thức thanh toán</h4>
+                        
+                        <div class="payment-method">
+                            <input type="radio" id="bank-transfer" name="payment-method" value="bank-transfer" checked>
+                            <label for="bank-transfer" class="payment-method-label">
+                                <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="Bank Transfer" class="payment-method-icon">
+                                Chuyển khoản ngân hàng
+                            </label>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="radio" id="momo" name="payment-method" value="momo">
+                            <label for="momo" class="payment-method-label">
+                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-MoMo.png" alt="Momo" class="payment-method-icon">
+                                Ví điện tử Momo
+                            </label>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="radio" id="zalopay" name="payment-method" value="zalopay">
+                            <label for="zalopay" class="payment-method-label">
+                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-ZaloPay.png" alt="ZaloPay" class="payment-method-icon">
+                                ZaloPay
+                            </label>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="radio" id="card" name="payment-method" value="card">
+                            <label for="card" class="payment-method-label">
+                                <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Card" class="payment-method-icon">
+                                Thẻ cào điện thoại
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-note">Ghi chú (nếu có)</label>
+                        <textarea id="customer-note" class="form-control" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="back-to-cart">Quay lại giỏ hàng</button>
+                <button class="btn" id="confirm-payment">Xác nhận thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="order-success">
+                <i class="fas fa-check-circle"></i>
+                <h3>Đặt Hàng Thành Công!</h3>
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Mã đơn hàng của bạn là: <strong id="order-id">TIK20230001</strong></p>
+                <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.</p>
+                <button class="btn close-modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-        // Accordion functionality
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const isActive = item.classList.contains('active');
+        // Cart functionality
+        let cart = [];
+        
+        // Load cart from localStorage
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            updateCartCount();
+        }
+        
+        // Add to cart button click
+        $(document).on('click', '.add-to-cart', function() {
+            const id = $(this).data('id');
+            const name = $(this).data('name');
+            const price = parseInt($(this).data('price'));
+            const coins = $(this).data('coins');
+            
+            // Check if item already in cart
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    coins,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            toastr.success('Đã thêm vào giỏ hàng');
+        });
+        
+        // Remove item from cart
+        $(document).on('click', '.cart-item-remove', function() {
+            const id = $(this).data('id');
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+            toastr.info('Đã xóa khỏi giỏ hàng');
+        });
+        
+        // Update cart UI
+        function updateCart() {
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Update cart items
+            const cartItems = $('#cart-items');
+            const emptyCartMessage = $('.empty-cart-message');
+            
+            if (cart.length === 0) {
+                cartItems.html('<p class="empty-cart-message">Giỏ hàng của bạn đang trống</p>');
+                $('#checkout-button').prop('disabled', true);
+            } else {
+                emptyCartMessage.remove();
+                let html = '';
+                let total = 0;
                 
-                // Close all items first
-                document.querySelectorAll('.accordion-item').forEach(i => {
-                    i.classList.remove('active');
-                    i.querySelector('.accordion-header i').className = 'fas fa-chevron-down';
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    html += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-title">${item.name} (${item.coins} xu)</div>
+                                <div class="cart-item-quantity">Số lượng: ${item.quantity}</div>
+                            </div>
+                            <div class="cart-item-price">${formatPrice(itemTotal)}đ</div>
+                            <i class="fas fa-times cart-item-remove" data-id="${item.id}"></i>
+                        </div>
+                    `;
                 });
                 
-                // Open current if it was closed
-                if (!isActive) {
-                    item.classList.add('active');
-                    header.querySelector('i').className = 'fas fa-chevron-up';
-                }
+                cartItems.html(html);
+                $('#cart-total').text(formatPrice(total) + 'đ');
+                $('#checkout-button').prop('disabled', false);
+            }
+        }
+        
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            $('.cart-count').text(count);
+        }
+        
+        // Format price
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        
+        // Generate random order ID
+        function generateOrderId() {
+            const prefix = 'TIK';
+            const date = new Date();
+            const year = date.getFullYear().toString().substr(-2);
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const random = Math.floor(1000 + Math.random() * 9000);
+            
+            return `${prefix}${year}${month}${day}${random}`;
+        }
+        
+        // Modal functionality
+        function openModal(modalId) {
+            $(modalId).fadeIn();
+            $('body').css('overflow', 'hidden');
+        }
+        
+        function closeModal() {
+            $('.modal').fadeOut();
+            $('body').css('overflow', 'auto');
+        }
+        
+        // Open cart modal
+        $('#cart-button').click(function(e) {
+            e.preventDefault();
+            openModal('#cart-modal');
+            updateCart();
+        });
+        
+        // Proceed to checkout
+        $('#checkout-button').click(function() {
+            $('#cart-modal').fadeOut(function() {
+                openModal('#checkout-modal');
             });
         });
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Back to cart
+        $('#back-to-cart').click(function() {
+            $('#checkout-modal').fadeOut(function() {
+                openModal('#cart-modal');
             });
         });
+        
+        // Confirm payment
+        $('#confirm-payment').click(function() {
+            // Validate form
+            if ($('#checkout-form')[0].checkValidity()) {
+                // In a real app, you would send this data to your server
+                const orderData = {
+                    orderId: generateOrderId(),
+                    customer: {
+                        name: $('#customer-name').val(),
+                        phone: $('#customer-phone').val(),
+                        email: $('#customer-email').val()
+                    },
+                    tiktokId: $('#tiktok-id').val(),
+                    items: cart,
+                    paymentMethod: $('input[name="payment-method"]:checked').val(),
+                    note: $('#customer-note').val(),
+                    total: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
+                    date: new Date().toISOString()
+                };
+                
+                // For demo purposes, we'll just show the success modal
+                $('#order-id').text(orderData.orderId);
+                $('#checkout-modal').fadeOut(function() {
+                    openModal('#success-modal');
+                    
+                    // Clear cart
+                    cart = [];
+                    updateCart();
+                    localStorage.removeItem('cart');
+                    
+                    // Reset form
+                    $('#checkout-form')[0].reset();
+                });
+            } else {
+                // Show validation errors
+                $('#checkout-form')[0].reportValidity();
+            }
+        });
+        
+        // Close modal when clicking X or outside
+        $('.close-modal, .modal').click(function(e) {
+            if (e.target === this || $(e.target).hasClass('close-modal')) {
+                closeModal();
+            }
+        });
+        
+        // Prevent modal from closing when clicking inside
+        $('.modal-content').click(function(e) {
+            e.stopPropagation();
+        });
+        
+        // Contact form submission
+        $('#contact-form').submit(function(e) {
+            e.preventDefault();
+            toastr.success('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
+            this.reset();
+        });
+        
+        // Accordion functionality
+        $('.accordion-header').click(function() {
+            const item = $(this).parent();
+            const isActive = item.hasClass('active');
+            
+            // Close all items first
+            $('.accordion-item').removeClass('active');
+            $('.accordion-header i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            
+            // Open current if it was closed
+            if (!isActive) {
+                item.addClass('active');
+                $(this).find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        $('a[href^="#"]').click(function(e) {
+            e.preventDefault();
+            
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top - 80
+            }, 500);
+        });
+        
+        // Toastr configuration
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "3000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
     </script>
 </body>
 </html>

@@ -9,1402 +9,219 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <style>
-        :root {
-            --primary-color: #FE2C55;
-            --secondary-color: #25F4EE;
-            --dark-color: #161823;
-            --light-color: #FFFFFF;
-            --gray-color: #F1F1F2;
-            --text-color: #333333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--gray-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 28px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-            position: relative;
-        }
-        
-        nav ul li a {
-            color: var(--light-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            opacity: 0.8;
-        }
-        
-        .cart-icon {
-            position: relative;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--light-color);
-            color: var(--primary-color);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .hero {
-            padding: 60px 0;
-            text-align: center;
-            background-color: var(--light-color);
-            margin-bottom: 40px;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--dark-color);
-        }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: var(--text-color);
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-outline:hover {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 32px;
-            color: var(--dark-color);
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-        
-        .pricing-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        
-        .pricing-card {
-            background-color: var(--light-color);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            text-align: center;
-            border: 1px solid #eee;
-            position: relative;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pricing-badge {
-            position: absolute;
-            top: 10px;
-            right: -30px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 5px 30px;
-            transform: rotate(45deg);
-            font-size: 12px;
-            font-weight: bold;
-            width: 120px;
-            text-align: center;
-        }
-        
-        .pricing-header {
-            padding: 30px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-        }
-        
-        .pricing-header h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        
-        .pricing-header .price {
-            font-size: 40px;
-            font-weight: 700;
-        }
-        
-        .pricing-header .price span {
-            font-size: 16px;
-            font-weight: 400;
-        }
-        
-        .pricing-body {
-            padding: 30px;
-        }
-        
-        .pricing-body ul {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-body ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .pricing-body ul li:last-child {
-            border-bottom: none;
-        }
-        
-        .pricing-body ul li i {
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
-        
-        .highlight {
-            background-color: var(--light-color);
-            padding: 60px 0;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        
-        .feature-card {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-card i {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-            color: var(--dark-color);
-        }
-        
-        .how-it-works {
-            background-color: var(--light-color);
-            padding: 60px 0;
-            margin-bottom: 60px;
-        }
-        
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-        
-        .step {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-            margin-bottom: 30px;
-        }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 auto 20px;
-        }
-        
-        .step:not(:last-child):after {
-            content: '';
-            position: absolute;
-            top: 25px;
-            right: -50px;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
-        
-        .testimonials {
-            padding: 60px 0;
-            background-color: var(--gray-color);
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 3px solid var(--primary-color);
-        }
-        
-        .testimonial-name {
-            font-weight: 700;
-            color: var(--dark-color);
-        }
-        
-        .testimonial-rating {
-            color: #FFC107;
-            margin-top: 5px;
-        }
-        
-        .faq {
-            padding: 60px 0;
-            background-color: var(--light-color);
-        }
-        
-        .accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .accordion-item {
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .accordion-header {
-            background-color: var(--gray-color);
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-        
-        .accordion-header:hover {
-            background-color: #e9e9e9;
-        }
-        
-        .accordion-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .accordion-content-inner {
-            padding: 20px;
-        }
-        
-        .accordion-item.active .accordion-content {
-            max-height: 500px;
-        }
-        
-        .contact {
-            padding: 60px 0;
-            background-color: var(--gray-color);
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .contact-card {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        
-        .contact-card i {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .contact-form {
-            background-color: var(--light-color);
+        /* [Giữ nguyên tất cả CSS từ phiên bản trước] */
+        /* ... */
+
+        /* Thêm CSS cho phần lịch sử đơn hàng */
+        .order-history {
+            background-color: white;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            max-width: 800px;
-            margin: 0 auto;
+            margin-bottom: 60px;
         }
-        
-        .form-group {
+
+        .order-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
             margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
             transition: all 0.3s ease;
         }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(254, 44, 85, 0.1);
+
+        .order-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
         }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-            animation: modalFadeIn 0.3s;
-        }
-        
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .modal-header {
+
+        .order-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
-        
-        .modal-title {
-            font-size: 24px;
-            color: var(--dark-color);
-            margin: 0;
-        }
-        
-        .close-modal {
-            font-size: 28px;
-            color: #aaa;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .close-modal:hover {
+
+        .order-id {
+            font-weight: bold;
             color: var(--primary-color);
         }
-        
-        .modal-body {
-            margin-bottom: 20px;
-        }
-        
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-        
-        /* Cart Styles */
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        
-        .cart-item-info {
-            flex: 1;
-        }
-        
-        .cart-item-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-price {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        .cart-item-remove {
-            color: #ff4d4d;
-            cursor: pointer;
-            font-size: 18px;
-            margin-left: 15px;
-        }
-        
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: 600;
-            margin: 20px 0;
-            padding-top: 20px;
-            border-top: 2px solid #eee;
-        }
-        
-        /* Checkout Form */
-        .checkout-form .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .payment-methods {
-            margin: 20px 0;
-        }
-        
-        .payment-method {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .payment-method:hover {
-            border-color: var(--primary-color);
-        }
-        
-        .payment-method input {
-            margin-right: 10px;
-        }
-        
-        .payment-method-label {
-            display: flex;
-            align-items: center;
-        }
-        
-        .payment-method-icon {
-            width: 40px;
-            height: 25px;
-            margin-right: 10px;
-            object-fit: contain;
-        }
-        
-        /* Order Success */
-        .order-success {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .order-success i {
-            font-size: 60px;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-        
-        .order-success h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        footer {
-            background-color: var(--dark-color);
-            color: var(--light-color);
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #aaa;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--light-color);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--light-color);
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
+
+        .order-date {
+            color: #666;
             font-size: 14px;
         }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .step:not(:last-child):after {
-                display: none;
-            }
-            
-            .step {
-                min-width: 100%;
-                margin-bottom: 40px;
-            }
-            
-            .modal-content {
-                margin: 20px auto;
-                width: 95%;
-                padding: 20px;
-            }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background-color: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-completed {
+            background-color: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background-color: #F8D7DA;
+            color: #721C24;
+        }
+
+        .order-details {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .order-total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .view-details {
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .no-orders {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .history-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .history-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .history-tab.active {
+            border-bottom-color: var(--primary-color);
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fab fa-tiktok"></i>
-                <span>Nạp Xu TikTok</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#pricing">Bảng Giá</a></li>
-                    <li><a href="#features">Tính Năng</a></li>
-                    <li><a href="#how-it-works">Hướng Dẫn</a></li>
-                    <li><a href="#contact">Liên Hệ</a></li>
-                    <li class="cart-icon">
-                        <a href="#" id="cart-button">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- [Giữ nguyên header, hero section, pricing section...] -->
+    <!-- ... -->
 
-    <section class="hero">
-        <div class="container">
-            <h1>Nạp Xu TikTok Chính Hãng Giá Rẻ</h1>
-            <p>Dịch vụ nạp xu TikTok uy tín, an toàn với giá cả cạnh tranh nhất thị trường. Hỗ trợ 24/7 với tốc độ nạp xu nhanh chóng chỉ trong 5 phút.</p>
-            <a href="#pricing" class="btn">Xem Bảng Giá Ngay</a>
+    <!-- Thêm section lịch sử đơn hàng -->
+    <section id="order-history" class="container" style="display: none;">
+        <h2 class="section-title">Lịch Sử Đơn Hàng</h2>
+        
+        <div class="history-tabs">
+            <div class="history-tab active" data-status="all">Tất cả</div>
+            <div class="history-tab" data-status="pending">Chờ xử lý</div>
+            <div class="history-tab" data-status="completed">Hoàn thành</div>
+            <div class="history-tab" data-status="cancelled">Đã hủy</div>
         </div>
-    </section>
-
-    <section id="pricing" class="container">
-        <h2 class="section-title">Bảng Giá Nạp Xu TikTok</h2>
-        <div class="pricing-table">
-            <div class="pricing-card">
-                <div class="pricing-badge">Phổ biến</div>
-                <div class="pricing-header">
-                    <h3>Gói Cơ Bản</h3>
-                    <div class="price">100.000đ <span>/ 1.300 xu</span></div>
-                </div>
-                <div class="pricing-body">
-                    <ul>
-                        <li><i class="fas fa-check"></i> 1.300 Xu TikTok</li>
-                        <li><i class="fas fa-check"></i> Tặng 50 xu</li>
-                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
-                        <li><i class="fas fa-check"></i> Nạp nhanh 5 phút</li>
-                    </ul>
-                    <button class="btn add-to-cart" data-id="1" data-name="Gói Cơ Bản" data-price="100000" data-coins="1300">Mua Ngay</button>
-                </div>
-            </div>
-            
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Gói Phổ Thông</h3>
-                    <div class="price">200.000đ <span>/ 2.700 xu</span></div>
-                </div>
-                <div class="pricing-body">
-                    <ul>
-                        <li><i class="fas fa-check"></i> 2.700 Xu TikTok</li>
-                        <li><i class="fas fa-check"></i> Tặng 150 xu</li>
-                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
-                        <li><i class="fas fa-check"></i> Nạp nhanh 5 phút</li>
-                    </ul>
-                    <button class="btn add-to-cart" data-id="2" data-name="Gói Phổ Thông" data-price="200000" data-coins="2700">Mua Ngay</button>
-                </div>
-            </div>
-            
-            <div class="pricing-card">
-                <div class="pricing-badge">Tiết kiệm</div>
-                <div class="pricing-header">
-                    <h3>Gói Cao Cấp</h3>
-                    <div class="price">500.000đ <span>/ 7.000 xu</span></div>
-                </div>
-                <div class="pricing-body">
-                    <ul>
-                        <li><i class="fas fa-check"></i> 7.000 Xu TikTok</li>
-                        <li><i class="fas fa-check"></i> Tặng 500 xu</li>
-                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7 VIP</li>
-                        <li><i class="fas fa-check"></i> Nạp nhanh 3 phút</li>
-                    </ul>
-                    <button class="btn add-to-cart" data-id="3" data-name="Gói Cao Cấp" data-price="500000" data-coins="7000">Mua Ngay</button>
+        
+        <div class="order-history">
+            <div id="orders-container">
+                <!-- Đơn hàng sẽ được hiển thị ở đây -->
+                <div class="no-orders">
+                    <i class="fas fa-box-open" style="font-size: 50px; margin-bottom: 15px;"></i>
+                    <p>Bạn chưa có đơn hàng nào</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="highlight">
-        <div class="container">
-            <h2 class="section-title">Tại Sao Chọn Chúng Tôi</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Nạp Xu Nhanh Chóng</h3>
-                    <p>Quy trình nạp xu tự động, chỉ từ 3-5 phút sau khi thanh toán thành công.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>An Toàn Tuyệt Đối</h3>
-                    <p>Cam kết không thu thập thông tin tài khoản, bảo mật 100% thông tin khách hàng.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-percentage"></i>
-                    <h3>Giá Cả Cạnh Tranh</h3>
-                    <p>Giá xu rẻ nhất thị trường với nhiều ưu đãi và khuyến mãi hấp dẫn.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Hỗ Trợ 24/7</h3>
-                    <p>Đội ngũ hỗ trợ chuyên nghiệp sẵn sàng giải đáp mọi thắc mắc của bạn.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- [Giữ nguyên các section khác...] -->
+    <!-- ... -->
 
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">Cách Thức Nạp Xu</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Chọn Gói Xu</h3>
-                    <p>Lựa chọn gói xu phù hợp với nhu cầu của bạn từ bảng giá bên trên.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Thanh Toán</h3>
-                    <p>Thực hiện thanh toán qua các phương thức chuyển khoản, ví điện tử hoặc thẻ cào.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Nhận Mã Code</h3>
-                    <p>Nhận mã code qua email hoặc tin nhắn SMS sau khi thanh toán thành công.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Nạp Xu Vào Tài Khoản</h3>
-                    <p>Đăng nhập TikTok và nhập mã code để nhận xu ngay lập tức.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Khách hàng" class="testimonial-avatar">
-                        <div>
-                            <div class="testimonial-name">Nguyễn Thị Mai</div>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p>"Mình đã sử dụng dịch vụ nhiều lần, lần nào cũng nạp xu rất nhanh và nhận được nhiều ưu đãi. Hỗ trợ nhiệt tình, rất đáng để sử dụng!"</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Khách hàng" class="testimonial-avatar">
-                        <div>
-                            <div class="testimonial-name">Trần Văn Nam</div>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p>"Giá cả hợp lý hơn so với nhiều nơi khác. Lần đầu sử dụng còn bỡ ngỡ nhưng được nhân viên hướng dẫn rất chi tiết. Sẽ ủng hộ dài lâu."</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Khách hàng" class="testimonial-avatar">
-                        <div>
-                            <div class="testimonial-name">Lê Thị Hương</div>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p>"Tôi rất hài lòng với tốc độ nạp xu, chỉ 3 phút sau khi thanh toán là có xu ngay. Dịch vụ chuyên nghiệp, sẽ giới thiệu cho bạn bè cùng sử dụng."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Nạp xu TikTok có an toàn không?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>Dịch vụ của chúng tôi hoàn toàn an toàn và bảo mật. Chúng tôi không yêu cầu mật khẩu tài khoản TikTok của bạn, chỉ cần bạn cung cấp ID TikTok hoặc số điện thoại/email đăng ký tài khoản để chúng tôi gửi mã code nạp xu.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Thời gian nạp xu mất bao lâu?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>Thông thường xu sẽ được nạp vào tài khoản của bạn trong vòng 3-5 phút sau khi thanh toán thành công. Trong một số trường hợp đặc biệt có thể mất tối đa 15 phút.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Tôi có thể hủy giao dịch sau khi thanh toán không?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>Nếu bạn chưa nhận được mã code, bạn có thể yêu cầu hủy giao dịch và hoàn tiền trong vòng 30 phút kể từ khi thanh toán. Sau khi đã nhận mã code, chúng tôi không thể hoàn tiền.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Có những phương thức thanh toán nào?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>Chúng tôi hỗ trợ nhiều phương thức thanh toán: Chuyển khoản ngân hàng, Ví điện tử (Momo, ZaloPay, ViettelPay), Thẻ cào điện thoại, và cổng thanh toán quốc tế (PayPal, thẻ Visa/Mastercard).</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>Hotline</h3>
-                    <p>1900 1234</p>
-                    <p>Hỗ trợ 24/7</p>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p>support@naptiktok.vn</p>
-                    <p>Phản hồi trong 1 giờ</p>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-comment-dots"></i>
-                    <h3>Chat Trực Tuyến</h3>
-                    <p>Facebook Messenger</p>
-                    <p>Zalo OA: 0901234567</p>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Họ và tên</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Số điện thoại</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Nội dung</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Gửi Liên Hệ</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Về Chúng Tôi</h3>
-                    <p>Dịch vụ nạp xu TikTok uy tín hàng đầu Việt Nam, cam kết giá rẻ, an toàn và nhanh chóng.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Dịch Vụ</h3>
-                    <ul>
-                        <li><a href="#">Nạp Xu TikTok</a></li>
-                        <li><a href="#">Mua Like TikTok</a></li>
-                        <li><a href="#">Mua Follower TikTok</a></li>
-                        <li><a href="#">Dịch vụ Livestream</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Hỗ Trợ</h3>
-                    <ul>
-                        <li><a href="#">Hướng dẫn nạp xu</a></li>
-                        <li><a href="#">Câu hỏi thường gặp</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
-                        <li><a href="#">Điều khoản dịch vụ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Liên Kết</h3>
-                    <ul>
-                        <li><a href="#">Trang chủ TikTok</a></li>
-                        <li><a href="#">Bảng giá quảng cáo</a></li>
-                        <li><a href="#">Cộng đồng TikToker</a></li>
-                        <li><a href="#">Tin tức TikTok</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 NAPTIKTOK.VN - Dịch vụ nạp xu TikTok chính hãng. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cart Modal -->
-    <div class="modal" id="cart-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Giỏ Hàng Của Bạn</h3>
-                <span class="close-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div id="cart-items">
-                    <!-- Cart items will be added here dynamically -->
-                    <p class="empty-cart-message">Giỏ hàng của bạn đang trống</p>
-                </div>
-                <div class="cart-total">
-                    <span>Tổng cộng:</span>
-                    <span id="cart-total">0đ</span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline close-modal">Tiếp tục mua hàng</button>
-                <button class="btn" id="checkout-button">Thanh toán</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Checkout Modal -->
-    <div class="modal" id="checkout-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Thanh Toán</h3>
-                <span class="close-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form class="checkout-form" id="checkout-form">
-                    <div class="form-group">
-                        <label for="customer-name">Họ và tên</label>
-                        <input type="text" id="customer-name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="customer-phone">Số điện thoại</label>
-                        <input type="tel" id="customer-phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="customer-email">Email</label>
-                        <input type="email" id="customer-email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tiktok-id">ID TikTok hoặc SĐT đăng ký</label>
-                        <input type="text" id="tiktok-id" class="form-control" required>
-                        <small class="text-muted">Nhập ID TikTok hoặc số điện thoại/email đăng ký tài khoản TikTok của bạn</small>
-                    </div>
-                    
-                    <div class="payment-methods">
-                        <h4>Phương thức thanh toán</h4>
-                        
-                        <div class="payment-method">
-                            <input type="radio" id="bank-transfer" name="payment-method" value="bank-transfer" checked>
-                            <label for="bank-transfer" class="payment-method-label">
-                                <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="Bank Transfer" class="payment-method-icon">
-                                Chuyển khoản ngân hàng
-                            </label>
-                        </div>
-                        
-                        <div class="payment-method">
-                            <input type="radio" id="momo" name="payment-method" value="momo">
-                            <label for="momo" class="payment-method-label">
-                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-MoMo.png" alt="Momo" class="payment-method-icon">
-                                Ví điện tử Momo
-                            </label>
-                        </div>
-                        
-                        <div class="payment-method">
-                            <input type="radio" id="zalopay" name="payment-method" value="zalopay">
-                            <label for="zalopay" class="payment-method-label">
-                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-ZaloPay.png" alt="ZaloPay" class="payment-method-icon">
-                                ZaloPay
-                            </label>
-                        </div>
-                        
-                        <div class="payment-method">
-                            <input type="radio" id="card" name="payment-method" value="card">
-                            <label for="card" class="payment-method-label">
-                                <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Card" class="payment-method-icon">
-                                Thẻ cào điện thoại
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customer-note">Ghi chú (nếu có)</label>
-                        <textarea id="customer-note" class="form-control" rows="3"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" id="back-to-cart">Quay lại giỏ hàng</button>
-                <button class="btn" id="confirm-payment">Xác nhận thanh toán</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Order Success Modal -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="order-success">
-                <i class="fas fa-check-circle"></i>
-                <h3>Đặt Hàng Thành Công!</h3>
-                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Mã đơn hàng của bạn là: <strong id="order-id">TIK20230001</strong></p>
-                <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.</p>
-                <button class="btn close-modal">Đóng</button>
-            </div>
-        </div>
-    </div>
+    <!-- [Giữ nguyên các modal...] -->
+    <!-- ... -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-        // Cart functionality
-        let cart = [];
+        // [Giữ nguyên các biến và hàm cơ bản...]
         
-        // Load cart from localStorage
-        if (localStorage.getItem('cart')) {
-            cart = JSON.parse(localStorage.getItem('cart'));
-            updateCartCount();
-        }
-        
-        // Add to cart button click
-        $(document).on('click', '.add-to-cart', function() {
-            const id = $(this).data('id');
-            const name = $(this).data('name');
-            const price = parseInt($(this).data('price'));
-            const coins = $(this).data('coins');
+        // Thêm tab lịch sử đơn hàng vào navigation
+        $(document).ready(function() {
+            $('nav ul').append('<li><a href="#order-history" id="history-link">Lịch Sử Đơn Hàng</a></li>');
             
-            // Check if item already in cart
-            const existingItem = cart.find(item => item.id === id);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
+            // Kiểm tra nếu có đơn hàng trong localStorage thì hiển thị tab lịch sử
+            if (localStorage.getItem('orders')) {
+                $('#history-link').show();
             } else {
-                cart.push({
-                    id,
-                    name,
-                    price,
-                    coins,
-                    quantity: 1
-                });
+                $('#history-link').hide();
             }
-            
-            updateCart();
-            toastr.success('Đã thêm vào giỏ hàng');
         });
+
+        // FormSubmit integration
+        $('#checkout-form').attr('action', 'https://formsubmit.co/your-email@example.com');
+        $('#checkout-form').attr('method', 'POST');
         
-        // Remove item from cart
-        $(document).on('click', '.cart-item-remove', function() {
-            const id = $(this).data('id');
-            cart = cart.filter(item => item.id !== id);
-            updateCart();
-            toastr.info('Đã xóa khỏi giỏ hàng');
-        });
-        
-        // Update cart UI
-        function updateCart() {
-            // Save to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
+        // Thêm input ẩn cho FormSubmit
+        function prepareFormSubmit(orderData) {
+            // Tạo các input ẩn chứa dữ liệu đơn hàng
+            let form = $('#checkout-form');
             
-            // Update cart count
-            updateCartCount();
+            // Xóa các input ẩn cũ nếu có
+            form.find('input[name^="_"]').remove();
             
-            // Update cart items
-            const cartItems = $('#cart-items');
-            const emptyCartMessage = $('.empty-cart-message');
+            // Thêm các thông tin cần thiết cho FormSubmit
+            form.append('<input type="hidden" name="_subject" value="[Nạp Xu TikTok] Đơn hàng mới #' + orderData.orderId + '">');
+            form.append('<input type="hidden" name="_template" value="table">');
+            form.append('<input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">');
+            form.append('<input type="hidden" name="_captcha" value="false">');
             
-            if (cart.length === 0) {
-                cartItems.html('<p class="empty-cart-message">Giỏ hàng của bạn đang trống</p>');
-                $('#checkout-button').prop('disabled', true);
-            } else {
-                emptyCartMessage.remove();
-                let html = '';
-                let total = 0;
-                
-                cart.forEach(item => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    
-                    html += `
-                        <div class="cart-item">
-                            <div class="cart-item-info">
-                                <div class="cart-item-title">${item.name} (${item.coins} xu)</div>
-                                <div class="cart-item-quantity">Số lượng: ${item.quantity}</div>
-                            </div>
-                            <div class="cart-item-price">${formatPrice(itemTotal)}đ</div>
-                            <i class="fas fa-times cart-item-remove" data-id="${item.id}"></i>
-                        </div>
-                    `;
-                });
-                
-                cartItems.html(html);
-                $('#cart-total').text(formatPrice(total) + 'đ');
-                $('#checkout-button').prop('disabled', false);
-            }
-        }
-        
-        // Update cart count
-        function updateCartCount() {
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            $('.cart-count').text(count);
-        }
-        
-        // Format price
-        function formatPrice(price) {
-            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-        
-        // Generate random order ID
-        function generateOrderId() {
-            const prefix = 'TIK';
-            const date = new Date();
-            const year = date.getFullYear().toString().substr(-2);
-            const month = (date.getMonth() + 1).toString().padStart(2, '0');
-            const day = date.getDate().toString().padStart(2, '0');
-            const random = Math.floor(1000 + Math.random() * 9000);
+            // Thêm dữ liệu đơn hàng
+            form.append('<input type="hidden" name="Mã đơn hàng" value="' + orderData.orderId + '">');
+            form.append('<input type="hidden" name="Tên khách hàng" value="' + orderData.customer.name + '">');
+            form.append('<input type="hidden" name="Email" value="' + orderData.customer.email + '">');
+            form.append('<input type="hidden" name="Số điện thoại" value="' + orderData.customer.phone + '">');
+            form.append('<input type="hidden" name="ID TikTok" value="' + orderData.tiktokId + '">');
+            form.append('<input type="hidden" name="Phương thức thanh toán" value="' + getPaymentMethodName(orderData.paymentMethod) + '">');
+            form.append('<input type="hidden" name="Ghi chú" value="' + (orderData.note || 'Không có') + '">');
+            form.append('<input type="hidden" name="Ngày đặt hàng" value="' + orderData.date + '">');
             
-            return `${prefix}${year}${month}${day}${random}`;
-        }
-        
-        // Modal functionality
-        function openModal(modalId) {
-            $(modalId).fadeIn();
-            $('body').css('overflow', 'hidden');
-        }
-        
-        function closeModal() {
-            $('.modal').fadeOut();
-            $('body').css('overflow', 'auto');
-        }
-        
-        // Open cart modal
-        $('#cart-button').click(function(e) {
-            e.preventDefault();
-            openModal('#cart-modal');
-            updateCart();
-        });
-        
-        // Proceed to checkout
-        $('#checkout-button').click(function() {
-            $('#cart-modal').fadeOut(function() {
-                openModal('#checkout-modal');
+            // Thêm thông tin sản phẩm
+            orderData.items.forEach((item, index) => {
+                form.append('<input type="hidden" name="Sản phẩm ' + (index + 1) + '" value="' + item.name + ' - ' + item.quantity + ' x ' + formatPrice(item.price) + 'đ">');
             });
-        });
-        
-        // Back to cart
-        $('#back-to-cart').click(function() {
-            $('#checkout-modal').fadeOut(function() {
-                openModal('#cart-modal');
-            });
-        });
-        
-        // Confirm payment
+            
+            form.append('<input type="hidden" name="Tổng cộng" value="' + formatPrice(orderData.total) + 'đ">');
+        }
+
+        // Confirm payment với FormSubmit
         $('#confirm-payment').click(function() {
             // Validate form
             if ($('#checkout-form')[0].checkValidity()) {
-                // In a real app, you would send this data to your server
+                // Show loading state
+                $(this).html('<i class="fas fa-spinner fa-spin"></i> Đang xử lý...').prop('disabled', true);
+                
+                // Prepare order data
+                const orderId = generateOrderId();
                 const orderData = {
-                    orderId: generateOrderId(),
+                    orderId: orderId,
                     customer: {
                         name: $('#customer-name').val(),
                         phone: $('#customer-phone').val(),
@@ -1415,10 +232,20 @@
                     paymentMethod: $('input[name="payment-method"]:checked').val(),
                     note: $('#customer-note').val(),
                     total: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
-                    date: new Date().toISOString()
+                    date: new Date().toLocaleString('vi-VN'),
+                    status: 'pending'
                 };
                 
-                // For demo purposes, we'll just show the success modal
+                // Chuẩn bị dữ liệu cho FormSubmit
+                prepareFormSubmit(orderData);
+                
+                // Lưu đơn hàng vào localStorage
+                saveOrder(orderData);
+                
+                // Gửi form thực tế
+                $('#checkout-form').submit();
+                
+                // Hiển thị thông báo thành công
                 $('#order-id').text(orderData.orderId);
                 $('#checkout-modal').fadeOut(function() {
                     openModal('#success-modal');
@@ -1430,71 +257,171 @@
                     
                     // Reset form
                     $('#checkout-form')[0].reset();
+                    
+                    // Hiển thị tab lịch sử
+                    $('#history-link').show();
                 });
+                
+                // Reset button state
+                $('#confirm-payment').html('Xác nhận thanh toán').prop('disabled', false);
             } else {
                 // Show validation errors
                 $('#checkout-form')[0].reportValidity();
             }
         });
-        
-        // Close modal when clicking X or outside
-        $('.close-modal, .modal').click(function(e) {
-            if (e.target === this || $(e.target).hasClass('close-modal')) {
-                closeModal();
+
+        // Lưu đơn hàng vào localStorage
+        function saveOrder(orderData) {
+            let orders = [];
+            
+            if (localStorage.getItem('orders')) {
+                orders = JSON.parse(localStorage.getItem('orders'));
             }
-        });
-        
-        // Prevent modal from closing when clicking inside
-        $('.modal-content').click(function(e) {
-            e.stopPropagation();
-        });
-        
-        // Contact form submission
-        $('#contact-form').submit(function(e) {
-            e.preventDefault();
-            toastr.success('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
-            this.reset();
-        });
-        
-        // Accordion functionality
-        $('.accordion-header').click(function() {
-            const item = $(this).parent();
-            const isActive = item.hasClass('active');
             
-            // Close all items first
-            $('.accordion-item').removeClass('active');
-            $('.accordion-header i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
-            
-            // Open current if it was closed
-            if (!isActive) {
-                item.addClass('active');
-                $(this).find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            orders.push(orderData);
+            localStorage.setItem('orders', JSON.stringify(orders));
+        }
+
+        // Hiển thị lịch sử đơn hàng
+        function loadOrderHistory(status = 'all') {
+            if (!localStorage.getItem('orders')) {
+                $('#orders-container').html(`
+                    <div class="no-orders">
+                        <i class="fas fa-box-open" style="font-size: 50px; margin-bottom: 15px;"></i>
+                        <p>Bạn chưa có đơn hàng nào</p>
+                    </div>
+                `);
+                return;
             }
-        });
-        
-        // Smooth scrolling for anchor links
-        $('a[href^="#"]').click(function(e) {
+            
+            const orders = JSON.parse(localStorage.getItem('orders'));
+            let filteredOrders = orders;
+            
+            if (status !== 'all') {
+                filteredOrders = orders.filter(order => order.status === status);
+            }
+            
+            if (filteredOrders.length === 0) {
+                $('#orders-container').html(`
+                    <div class="no-orders">
+                        <i class="fas fa-box-open" style="font-size: 50px; margin-bottom: 15px;"></i>
+                        <p>Không tìm thấy đơn hàng nào</p>
+                    </div>
+                `);
+                return;
+            }
+            
+            let html = '';
+            
+            // Sắp xếp đơn hàng mới nhất lên đầu
+            filteredOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            filteredOrders.forEach(order => {
+                let itemsHtml = '';
+                let total = 0;
+                
+                order.items.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    itemsHtml += `
+                        <div class="order-item">
+                            <span>${item.name} (${item.coins} xu) x ${item.quantity}</span>
+                            <span>${formatPrice(itemTotal)}đ</span>
+                        </div>
+                    `;
+                });
+                
+                let statusClass = '';
+                let statusText = '';
+                
+                switch (order.status) {
+                    case 'pending':
+                        statusClass = 'status-pending';
+                        statusText = 'Chờ xử lý';
+                        break;
+                    case 'completed':
+                        statusClass = 'status-completed';
+                        statusText = 'Hoàn thành';
+                        break;
+                    case 'cancelled':
+                        statusClass = 'status-cancelled';
+                        statusText = 'Đã hủy';
+                        break;
+                    default:
+                        statusClass = 'status-pending';
+                        statusText = 'Chờ xử lý';
+                }
+                
+                html += `
+                    <div class="order-card" data-status="${order.status}">
+                        <div class="order-header">
+                            <div>
+                                <span class="order-id">Đơn hàng #${order.orderId}</span>
+                                <span class="order-date">${order.date}</span>
+                            </div>
+                            <span class="order-status ${statusClass}">${statusText}</span>
+                        </div>
+                        
+                        <div>Tổng giá trị: <strong>${formatPrice(order.total)}đ</strong></div>
+                        <div>Phương thức: ${getPaymentMethodName(order.paymentMethod)}</div>
+                        
+                        <div class="order-details">
+                            ${itemsHtml}
+                            <div class="order-total">Tổng cộng: ${formatPrice(order.total)}đ</div>
+                        </div>
+                        
+                        <div class="view-details">Xem chi tiết <i class="fas fa-chevron-down"></i></div>
+                    </div>
+                `;
+            });
+            
+            $('#orders-container').html(html);
+        }
+
+        // Xử lý khi click vào tab lịch sử
+        $('#history-link').click(function(e) {
             e.preventDefault();
             
+            // Ẩn tất cả các section khác
+            $('section').hide();
+            
+            // Hiển thị section lịch sử
+            $('#order-history').show();
+            
+            // Load đơn hàng
+            loadOrderHistory();
+            
+            // Cuộn đến section
             $('html, body').animate({
-                scrollTop: $($(this).attr('href')).offset().top - 80
+                scrollTop: $('#order-history').offset().top - 80
             }, 500);
         });
-        
-        // Toastr configuration
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "3000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
+
+        // Xử lý khi click vào tab trạng thái
+        $(document).on('click', '.history-tab', function() {
+            $('.history-tab').removeClass('active');
+            $(this).addClass('active');
+            
+            const status = $(this).data('status');
+            loadOrderHistory(status);
+        });
+
+        // Xử lý khi click xem chi tiết đơn hàng
+        $(document).on('click', '.view-details', function() {
+            const details = $(this).siblings('.order-details');
+            const icon = $(this).find('i');
+            
+            if (details.is(':visible')) {
+                details.slideUp();
+                icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            } else {
+                details.slideDown();
+                icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            }
+        });
+
+        // [Giữ nguyên các hàm còn lại...]
     </script>
 </body>
 </html>

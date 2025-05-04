@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dịch vụ nạp xu TikTok chính hãng, giá rẻ, an toàn và nhanh chóng. Nạp coin TikTok với nhiều ưu đãi hấp dẫn.">
+    <meta name="keywords" content="nạp xu tiktok, nap coin tiktok, mua xu tiktok, giá xu tiktok, dịch vụ tiktok">
+    <title>Dịch Vụ Nạp Xu TikTok Chính Hãng | Giá Rẻ & An Toàn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FE2C55;
+            --secondary-color: #25F4EE;
+            --dark-color: #161823;
+            --light-color: #FFFFFF;
+            --gray-color: #F1F1F2;
+            --text-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--light-color);
+            margin-bottom: 40px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--text-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .pricing-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+        }
+        
+        .pricing-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-header .price {
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .pricing-header .price span {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        
+        .pricing-body {
+            padding: 30px;
+        }
+        
+        .pricing-body ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-body ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-body ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-body ul li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .highlight {
+            background-color: var(--light-color);
+            padding: 60px 0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .how-it-works {
+            background-color: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -50px;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .testimonials {
+            padding: 60px 0;
+            background-color: var(--gray-color);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .testimonial-rating {
+            color: #FFC107;
+            margin-top: 5px;
+        }
+        
+        .faq {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .accordion-header {
+            background-color: var(--gray-color);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-content-inner {
+            padding: 20px;
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        
+        .contact {
+            padding: 60px 0;
+            background-color: var(--gray-color);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .contact-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .contact-form {
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(254, 44, 85, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--light-color);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-color);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .step:not(:last-child):after {
+                display: none;
+            }
+            
+            .step {
+                min-width: 100%;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fab fa-tiktok"></i>
+                <span>Nạp Xu TikTok</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#pricing">Bảng Giá</a></li>
+                    <li><a href="#features">Tính Năng</a></li>
+                    <li><a href="#how-it-works">Hướng Dẫn</a></li>
+                    <li><a href="#contact">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Nạp Xu TikTok Chính Hãng Giá Rẻ</h1>
+            <p>Dịch vụ nạp xu TikTok uy tín, an toàn với giá cả cạnh tranh nhất thị trường. Hỗ trợ 24/7 với tốc độ nạp xu nhanh chóng chỉ trong 5 phút.</p>
+            <a href="#pricing" class="btn">Xem Bảng Giá Ngay</a>
+        </div>
+    </section>
+
+    <section id="pricing" class="container">
+        <h2 class="section-title">Bảng Giá Nạp Xu TikTok</h2>
+        <div class="pricing-table">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Gói Cơ Bản</h3>
+                    <div class="price">100.000đ <span>/ 1.300 xu</span></div>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> 1.300 Xu TikTok</li>
+                        <li><i class="fas fa-check"></i> Tặng 50 xu</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                        <li><i class="fas fa-check"></i> Nạp nhanh 5 phút</li>
+                    </ul>
+                    <a href="#" class="btn">Mua Ngay</a>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Gói Phổ Thông</h3>
+                    <div class="price">200.000đ <span>/ 2.700 xu</span></div>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> 2.700 Xu TikTok</li>
+                        <li><i class="fas fa-check"></i> Tặng 150 xu</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                        <li><i class="fas fa-check"></i> Nạp nhanh 5 phút</li>
+                    </ul>
+                    <a href="#" class="btn">Mua Ngay</a>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Gói Cao Cấp</h3>
+                    <div class="price">500.000đ <span>/ 7.000 xu</span></div>
+                </div>
+                <div class="pricing-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> 7.000 Xu TikTok</li>
+                        <li><i class="fas fa-check"></i> Tặng 500 xu</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7 VIP</li>
+                        <li><i class="fas fa-check"></i> Nạp nhanh 3 phút</li>
+                    </ul>
+                    <a href="#" class="btn">Mua Ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="highlight">
+        <div class="container">
+            <h2 class="section-title">Tại Sao Chọn Chúng Tôi</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Nạp Xu Nhanh Chóng</h3>
+                    <p>Quy trình nạp xu tự động, chỉ từ 3-5 phút sau khi thanh toán thành công.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>An Toàn Tuyệt Đối</h3>
+                    <p>Cam kết không thu thập thông tin tài khoản, bảo mật 100% thông tin khách hàng.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-percentage"></i>
+                    <h3>Giá Cả Cạnh Tranh</h3>
+                    <p>Giá xu rẻ nhất thị trường với nhiều ưu đãi và khuyến mãi hấp dẫn.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Hỗ Trợ 24/7</h3>
+                    <p>Đội ngũ hỗ trợ chuyên nghiệp sẵn sàng giải đáp mọi thắc mắc của bạn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Cách Thức Nạp Xu</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Chọn Gói Xu</h3>
+                    <p>Lựa chọn gói xu phù hợp với nhu cầu của bạn từ bảng giá bên trên.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Thanh Toán</h3>
+                    <p>Thực hiện thanh toán qua các phương thức chuyển khoản, ví điện tử hoặc thẻ cào.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Nhận Mã Code</h3>
+                    <p>Nhận mã code qua email hoặc tin nhắn SMS sau khi thanh toán thành công.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Nạp Xu Vào Tài Khoản</h3>
+                    <p>Đăng nhập TikTok và nhập mã code để nhận xu ngay lập tức.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Khách hàng" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Nguyễn Thị Mai</div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Mình đã sử dụng dịch vụ nhiều lần, lần nào cũng nạp xu rất nhanh và nhận được nhiều ưu đãi. Hỗ trợ nhiệt tình, rất đáng để sử dụng!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Khách hàng" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Trần Văn Nam</div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Giá cả hợp lý hơn so với nhiều nơi khác. Lần đầu sử dụng còn bỡ ngỡ nhưng được nhân viên hướng dẫn rất chi tiết. Sẽ ủng hộ dài lâu."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Khách hàng" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Lê Thị Hương</div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Tôi rất hài lòng với tốc độ nạp xu, chỉ 3 phút sau khi thanh toán là có xu ngay. Dịch vụ chuyên nghiệp, sẽ giới thiệu cho bạn bè cùng sử dụng."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Nạp xu TikTok có an toàn không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Dịch vụ của chúng tôi hoàn toàn an toàn và bảo mật. Chúng tôi không yêu cầu mật khẩu tài khoản TikTok của bạn, chỉ cần bạn cung cấp ID TikTok hoặc số điện thoại/email đăng ký tài khoản để chúng tôi gửi mã code nạp xu.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Thời gian nạp xu mất bao lâu?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Thông thường xu sẽ được nạp vào tài khoản của bạn trong vòng 3-5 phút sau khi thanh toán thành công. Trong một số trường hợp đặc biệt có thể mất tối đa 15 phút.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Tôi có thể hủy giao dịch sau khi thanh toán không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Nếu bạn chưa nhận được mã code, bạn có thể yêu cầu hủy giao dịch và hoàn tiền trong vòng 30 phút kể từ khi thanh toán. Sau khi đã nhận mã code, chúng tôi không thể hoàn tiền.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Có những phương thức thanh toán nào?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Chúng tôi hỗ trợ nhiều phương thức thanh toán: Chuyển khoản ngân hàng, Ví điện tử (Momo, ZaloPay, ViettelPay), Thẻ cào điện thoại, và cổng thanh toán quốc tế (PayPal, thẻ Visa/Mastercard).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Hotline</h3>
+                    <p>1900 1234</p>
+                    <p>Hỗ trợ 24/7</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>support@naptiktok.vn</p>
+                    <p>Phản hồi trong 1 giờ</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-comment-dots"></i>
+                    <h3>Chat Trực Tuyến</h3>
+                    <p>Facebook Messenger</p>
+                    <p>Zalo OA: 0901234567</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nội dung</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Gửi Liên Hệ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về Chúng Tôi</h3>
+                    <p>Dịch vụ nạp xu TikTok uy tín hàng đầu Việt Nam, cam kết giá rẻ, an toàn và nhanh chóng.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Dịch Vụ</h3>
+                    <ul>
+                        <li><a href="#">Nạp Xu TikTok</a></li>
+                        <li><a href="#">Mua Like TikTok</a></li>
+                        <li><a href="#">Mua Follower TikTok</a></li>
+                        <li><a href="#">Dịch vụ Livestream</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hỗ Trợ</h3>
+                    <ul>
+                        <li><a href="#">Hướng dẫn nạp xu</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Liên Kết</h3>
+                    <ul>
+                        <li><a href="#">Trang chủ TikTok</a></li>
+                        <li><a href="#">Bảng giá quảng cáo</a></li>
+                        <li><a href="#">Cộng đồng TikToker</a></li>
+                        <li><a href="#">Tin tức TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 NAPTIKTOK.VN - Dịch vụ nạp xu TikTok chính hãng. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items first
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.accordion-header i').className = 'fas fa-chevron-down';
+                });
+                
+                // Open current if it was closed
+                if (!isActive) {
+                    item.classList.add('active');
+                    header.querySelector('i').className = 'fas fa-chevron-up';
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

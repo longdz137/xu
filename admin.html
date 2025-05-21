@@ -98,4 +98,211 @@
         
         .table-container {
             background-color: white;
-            padding: 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: #f9f9f9;
+            color: #555;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            background-color: #FFF3CD;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background-color: #D4EDDA;
+            color: #155724;
+        }
+        
+        .status-failed {
+            background-color: #F8D7DA;
+            color: #721C24;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: #FE2C55;
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: #FE2C55;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Nạp Xu TikTok</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i>📊</i> Dashboard</a></li>
+                <li><a href="#"><i>💳</i> Giao dịch</a></li>
+                <li><a href="#"><i>👥</i> Khách hàng</a></li>
+                <li><a href="#"><i>💰</i> Gói xu</a></li>
+                <li><a href="#"><i>⚙️</i> Cài đặt</a></li>
+                <li><a href="index.html"><i>🏠</i> Về trang chủ</a></li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h2>Dashboard</h2>
+                <div>
+                    <span>Xin chào, Admin!</span>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Tổng giao dịch</h3>
+                    <div class="value">1,245</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Doanh thu hôm nay</h3>
+                    <div class="value">12,450,000 ₫</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Giao dịch thành công</h3>
+                    <div class="value">1,189</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Khách hàng mới</h3>
+                    <div class="value">45</div>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm giao dịch...">
+                <button>Tìm kiếm</button>
+            </div>
+            
+            <div class="table-container">
+                <h3>Giao dịch gần đây</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Khách hàng</th>
+                            <th>Gói xu</th>
+                            <th>Số tiền</th>
+                            <th>Thời gian</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1256</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>50.000 Xu</td>
+                            <td>550,000 ₫</td>
+                            <td>10:25 15/11/2023</td>
+                            <td><span class="status status-completed">Hoàn thành</span></td>
+                            <td><button class="btn btn-primary btn-sm">Xem</button></td>
+                        </tr>
+                        <tr>
+                            <td>#1255</td>
+                            <td>Trần Thị B</td>
+                            <td>10.000 Xu</td>
+                            <td>120,000 ₫</td>
+                            <td>09:45 15/11/2023</td>
+                            <td><span class="status status-completed">Hoàn thành</span></td>
+                            <td><button class="btn btn-primary btn-sm">Xem</button></td>
+                        </tr>
+                        <tr>
+                            <td>#1254</td>
+                            <td>Lê Văn C</td>
+                            <td>100.000 Xu</td>
+                            <td>1,050,000 ₫</td>
+                            <td>23:12 14/11/2023</td>
+                            <td><span class="status status-pending">Đang xử lý</span></td>
+                            <td><button class="btn btn-primary btn-sm">Xem</button></td>
+                        </tr>
+                        <tr>
+                            <td>#1253</td>
+                            <td>Phạm Thị D</td>
+                            <td>30.000 Xu</td>
+                            <td>350,000 ₫</td>
+                            <td>21:30 14/11/2023</td>
+                            <td><span class="status status-failed">Thất bại</span></td>
+                            <td><button class="btn btn-primary btn-sm">Xem</button></td>
+                        </tr>
+                        <tr>
+                            <td>#1252</td>
+                            <td>Hoàng Văn E</td>
+                            <td>50.000 Xu</td>
+                            <td>550,000 ₫</td>
+                            <td>18:15 14/11/2023</td>
+                            <td><span class="status status-completed">Hoàn thành</span></td>
+                            <td><button class="btn btn-primary btn-sm">Xem</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

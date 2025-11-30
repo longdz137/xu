@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý đơn hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .order { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .pending { background: #fff3cd; }
+        .completed { background: #d4edda; }
+        .cancelled { background: #f8d7da; }
+        button { margin: 5px; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Quản lý đơn hàng</h1>
+    <div id="orders"></div>
+
+    <script>
+        function loadOrders() {
+            const history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+            const ordersHtml = history.map(order => `
+                <div class="order ${order.status}">
+                    <strong>Mã: ${order.transactionId}</strong><br>
+                    Tài khoản: ${order.username}<br>
+                    SĐT: ${order.phone}<br>
+                    Số tiền: ${parseInt(order.amount).toLocaleString('vi-VN')} VNĐ<br>
+                    Trạng thái: <span id="status-${order.transactionId}">${order.status}</span><br>
+                    <button onclick="updateStatus('${order.transactionId}', 'completed')">✅ Hoàn thành</button>
+                    <button onclick="updateStatus('${order.transactionId}', 'cancelled')">❌ Hủy</button>
+                    <button onclick="updateStatus('${order.transactionId}', 'pending')">⏳ Chờ xử lý</button>
+                </div>
+            `).join('');
+            document.getElementById('orders').innerHTML = ordersHtml;
+        }
+
+        function updateStatus(transactionId, status) {
+            let history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+            const orderIndex = history.findIndex(o => o.transactionId === transactionId);
+            if (orderIndex !== -1) {
+                history[orderIndex].status = status;
+                localStorage.setItem('rechargeHistory', JSON.stringify(history));
+                
+                // Cập nhật file status-updates.json (giả lập)
+                updateStatusFile(transactionId, status);
+                
+                loadOrders();
+                alert(`Đã cập nhật đơn ${transactionId} thành: ${status}`);
+            }
+        }
+
+        function updateStatusFile(transactionId, status) {
+            // Trong thực tế, đây sẽ là API call đến backend
+            console.log(`Cập nhật ${transactionId} thành ${status}`);
+        }
+
+        loadOrders();
+        setInterval(loadOrders, 5000);
+    </script>
+</body>
+</html>

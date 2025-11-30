@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nạp Xu TikTok - Tỷ lệ 10K = 30 Xu</title>
+    <style>
+        :root {
+            --primary-color: #fe2c55;
+            --secondary-color: #25f4ee;
+            --dark-color: #121212;
+            --light-color: #ffffff;
+            --gray-color: #f8f9fa;
+            --text-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-color);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .rate-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .package {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package.popular::before {
+            content: "Phổ biến";
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .package-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .package h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .package .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .package .price span {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .package .coins {
+            font-size: 18px;
+            color: #25a15f;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .package ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .package ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .package ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .form-container {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--light-color);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🎵</div>
+                    <h1>TikTok Coin</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Trang chủ</a></li>
+                        <li><a href="#packages">Gói nạp</a></li>
+                        <li><a href="#recharge">Nạp xu</a></li>
+                        <li><a href="history.html">Lịch sử nạp</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Nạp Xu TikTok Nhanh Chóng & An Toàn</h2>
+            <p>Hệ thống nạp xu TikTok tự động với thông báo Telegram cho admin. Nhanh chóng, tiện lợi và bảo mật.</p>
+            <div class="rate-badge">Tỷ lệ nạp: 10.000 VNĐ = 30 Xu</div>
+            <a href="#recharge" class="btn" style="margin-top: 20px;">Nạp Xu Ngay</a>
+        </div>
+    </section>
+
+    <section class="section" id="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Các Gói Nạp Phổ Biến</h2>
+                <p>Lựa chọn gói nạp phù hợp với nhu cầu của bạn</p>
+            </div>
+            <div class="packages">
+                <div class="package">
+                    <div class="package-icon">💰</div>
+                    <h3>Gói Cơ Bản</h3>
+                    <div class="price">50.000<span> VNĐ</span></div>
+                    <div class="coins">150 Xu TikTok</div>
+                    <ul>
+                        <li>Nạp tự động 24/7</li>
+                        <li>Hỗ trợ 15 phút</li>
+                        <li>Xử lý trong 5 phút</li>
+                    </ul>
+                    <button class="btn select-package" data-amount="50000" data-coins="150">Chọn Gói</button>
+                </div>
+                <div class="package popular">
+                    <div class="package-icon">💎</div>
+                    <h3>Gói Tiết Kiệm</h3>
+                    <div class="price">100.000<span> VNĐ</span></div>
+                    <div class="coins">300 Xu TikTok</div>
+                    <ul>
+                        <li>Nạp tự động 24/7</li>
+                        <li>Hỗ trợ 30 phút</li>
+                        <li>Xử lý trong 3 phút</li>
+                        <li>Ưu đãi +10 Xu</li>
+                    </ul>
+                    <button class="btn select-package" data-amount="100000" data-coins="310">Chọn Gói</button>
+                </div>
+                <div class="package">
+                    <div class="package-icon">👑</div>
+                    <h3>Gói Cao Cấp</h3>
+                    <div class="price">200.000<span> VNĐ</span></div>
+                    <div class="coins">600 Xu TikTok</div>
+                    <ul>
+                        <li>Nạp tự động 24/7</li>
+                        <li>Hỗ trợ 1 giờ</li>
+                        <li>Xử lý ngay lập tức</li>
+                        <li>Ưu đãi +30 Xu</li>
+                        <li>Quà tặng đặc biệt</li>
+                    </ul>
+                    <button class="btn select-package" data-amount="200000" data-coins="630">Chọn Gói</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="recharge">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nạp Xu TikTok</h2>
+                <p>Điền thông tin để thực hiện giao dịch nạp xu</p>
+            </div>
+            <div class="form-container">
+                <div id="notification" class="notification"></div>
+                <form id="recharge-form">
+                    <div class="form-group">
+                        <label for="username">Tên TikTok <span style="color: red;">*</span></label>
+                        <input type="text" id="username" class="form-control" placeholder="Nhập tên tài khoản TikTok" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại <span style="color: red;">*</span></label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amount">Số tiền (VNĐ) <span style="color: red;">*</span></label>
+                            <input type="number" id="amount" class="form-control" placeholder="Nhập số tiền" min="10000" step="10000" required>
+                            <small style="color: #666; margin-top: 5px; display: block;">Tối thiểu 10.000 VNĐ</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="coins">Số xu nhận được</label>
+                            <input type="number" id="coins" class="form-control" placeholder="Số xu" readonly>
+                            <small style="color: #666; margin-top: 5px; display: block;">Tỷ lệ: 10.000 VNĐ = 30 Xu</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">Phương thức thanh toán <span style="color: red;">*</span></label>
+                        <select id="payment" class="form-control" required>
+                            <option value="">Chọn phương thức thanh toán</option>
+                            <option value="momo">Ví MoMo</option>
+                            <option value="zalo">Ví ZaloPay</option>
+                            <option value="bank">Chuyển khoản ngân hàng</option>
+                            <option value="card">Thẻ cào</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Tiếp Tục Thanh Toán</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-icon">🎵</div>
+                    <h1>TikTok Coin</h1>
+                </div>
+                <p>Hệ thống nạp xu TikTok tích hợp thông báo Telegram</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💬</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 TikTok Coin. Tất cả các quyền được bảo lưu.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== CẤU HÌNH TELEGRAM BOT ====================
+        const TELEGRAM_BOT_TOKEN = '8456385484:AAGwIMMR4HmFS4kppN7xZxJaeQRr1zO5Yqk';
+        const TELEGRAM_CHAT_ID = '5444123544';
+        
+        // ==================== BIẾN TOÀN CỤC ====================
+        const EXCHANGE_RATE = 30 / 10000;
+        let statusCheckInterval;
+
+        // ==================== KHỞI TẠO TRANG ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('amount').value = 10000;
+            document.getElementById('coins').value = 30;
+            
+            // Bắt đầu kiểm tra trạng thái
+            startStatusChecking();
+        });
+
+        // ==================== KIỂM TRA TRẠNG THÁI ĐƠN HÀNG ====================
+        function startStatusChecking() {
+            // Kiểm tra mỗi 10 giây
+            statusCheckInterval = setInterval(() => {
+                checkOrderStatuses();
+            }, 10000);
+        }
+
+        // ==================== KIỂM TRA TRẠNG THÁI CÁC ĐƠN HÀNG ====================
+        async function checkOrderStatuses() {
+            try {
+                const history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+                const pendingOrders = history.filter(order => order.status === 'pending');
+                
+                for (const order of pendingOrders) {
+                    // Kiểm tra trạng thái từ server (giả lập)
+                    const status = await getOrderStatusFromServer(order.transactionId);
+                    if (status && status !== order.status) {
+                        await updateTransactionStatus(order.transactionId, status);
+                        showStatusUpdateNotification(order.transactionId, status);
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Lỗi kiểm tra trạng thái:', error);
+            }
+        }
+
+        // ==================== LẤY TRẠNG THÁI TỪ SERVER (GIẢ LẬP) ====================
+        async function getOrderStatusFromServer(transactionId) {
+            // ĐÂY LÀ PHẦN QUAN TRỌNG: Kết nối với backend thực tế
+            try {
+                // Giả lập API call đến backend
+                // const response = await fetch(`/api/orders/${transactionId}/status`);
+                // const data = await response.json();
+                // return data.status;
+                
+                // Tạm thời dùng giả lập
+                return await mockGetOrderStatus(transactionId);
+            } catch (error) {
+                console.error('❌ Lỗi lấy trạng thái từ server:', error);
+                return null;
+            }
+        }
+
+        // ==================== GIẢ LẬP LẤY TRẠNG THÁI ====================
+        async function mockGetOrderStatus(transactionId) {
+            // Tạo file status-updates.json trong cùng thư mục để test
+            try {
+                const response = await fetch('status-updates.json?' + Date.now());
+                const updates = await response.json();
+                const update = updates.find(u => u.transactionId === transactionId);
+                return update ? update.status : null;
+            } catch (error) {
+                // Nếu không có file, dùng random demo
+                if (Math.random() < 0.1) { // 10% cơ hội cập nhật
+                    return Math.random() < 0.7 ? 'completed' : 'cancelled';
+                }
+                return null;
+            }
+        }
+
+        // ==================== XỬ LÝ CHỌN GÓI NẠP ====================
+        document.querySelectorAll('.select-package').forEach(button => {
+            button.addEventListener('click', function() {
+                const amount = this.getAttribute('data-amount');
+                const coins = this.getAttribute('data-coins');
+                
+                document.getElementById('amount').value = amount;
+                document.getElementById('coins').value = coins;
+                
+                document.getElementById('recharge').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // ==================== TÍNH TOÁN SỐ XU ====================
+        document.getElementById('amount').addEventListener('input', function() {
+            const amount = parseInt(this.value) || 0;
+            
+            if (amount < 10000) {
+                document.getElementById('coins').value = 0;
+                return;
+            }
+            
+            const coins = Math.floor(amount * EXCHANGE_RATE);
+            document.getElementById('coins').value = coins;
+        });
+        
+        // ==================== XỬ LÝ FORM NẠP XU ====================
+        document.getElementById('recharge-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+            const amount = document.getElementById('amount').value;
+            const coins = document.getElementById('coins').value;
+            const payment = document.getElementById('payment').value;
+            
+            if (amount < 10000) {
+                const notification = document.getElementById('notification');
+                notification.textContent = '❌ Số tiền nạp tối thiểu là 10.000 VNĐ';
+                notification.className = 'notification error';
+                notification.style.display = 'block';
+                return;
+            }
+            
+            const transactionId = generateTransactionId();
+            
+            const transactionData = {
+                username,
+                phone,
+                amount,
+                coins,
+                payment,
+                transactionId,
+                timestamp: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            localStorage.setItem('currentTransaction', JSON.stringify(transactionData));
+            saveToHistory(transactionData);
+            
+            // Gửi thông báo đến Telegram
+            sendOrderNotification('NEW_ORDER', transactionData);
+            
+            if (payment === 'card') {
+                window.location.href = 'payment-card.html';
+            } else {
+                window.location.href = 'payment-bank.html';
+            }
+        });
+
+        // ==================== GỬI THÔNG BÁO ĐƠN HÀNG ====================
+        async function sendOrderNotification(type, transaction) {
+            let message = '';
+            
+            switch(type) {
+                case 'NEW_ORDER':
+                    message = `🆕 <b>ĐƠN HÀNG MỚI</b>\n\n` +
+                             `👤 <b>Tài khoản:</b> ${transaction.username}\n` +
+                             `📞 <b>SĐT:</b> ${transaction.phone}\n` +
+                             `💰 <b>Số tiền:</b> ${formatCurrency(transaction.amount)} VNĐ\n` +
+                             `🪙 <b>Số xu:</b> ${transaction.coins} Xu\n` +
+                             `💳 <b>Phương thức:</b> ${getPaymentMethod(transaction.payment)}\n` +
+                             `🆔 <b>Mã GD:</b> <code>${transaction.transactionId}</code>\n` +
+                             `⏰ <b>Thời gian:</b> ${formatDate(transaction.timestamp)}\n\n` +
+                             `⚡ <b>Để cập nhật trạng thái, truy cập:</b>\n` +
+                             `https://your-domain.com/admin.html\n\n` +
+                             `⚠️ <i>Vui lòng xử lý đơn hàng!</i>`;
+                    break;
+            }
+            
+            await sendTelegramMessage(message);
+        }
+
+        // ==================== CẬP NHẬT TRẠNG THÁI GIAO DỊCH ====================
+        async function updateTransactionStatus(transactionId, status) {
+            try {
+                const history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+                const transactionIndex = history.findIndex(t => t.transactionId === transactionId);
+                
+                if (transactionIndex !== -1) {
+                    history[transactionIndex].status = status;
+                    localStorage.setItem('rechargeHistory', JSON.stringify(history));
+                    
+                    console.log(`✅ Đã cập nhật trạng thái ${transactionId} thành: ${status}`);
+                    return true;
+                } else {
+                    console.error('❌ Không tìm thấy giao dịch:', transactionId);
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Lỗi cập nhật trạng thái:', error);
+                return false;
+            }
+        }
+
+        // ==================== HIỂN THỊ THÔNG BÁO CẬP NHẬT TRẠNG THÁI ====================
+        function showStatusUpdateNotification(transactionId, status) {
+            // Kiểm tra xem trang history có đang mở không
+            if (window.location.pathname.includes('history.html')) {
+                // Reload trang history để hiển thị cập nhật mới
+                const searchPhone = document.getElementById('search-phone');
+                if (searchPhone && searchPhone.value) {
+                    setTimeout(() => {
+                        document.getElementById('search-history').click();
+                    }, 1000);
+                }
+            }
+            
+            // Hiển thị thông báo
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 10000;
+                max-width: 400px;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            notification.innerHTML = `
+                <strong>🔄 Cập nhật trạng thái</strong><br>
+                Mã GD: ${transactionId}<br>
+                Trạng thái: ${getStatusText(status)}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Tự động ẩn sau 5 giây
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // ==================== HÀM GỬI TIN NHẮN TELEGRAM ====================
+        async function sendTelegramMessage(message) {
+            if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
+                console.log('📤 [DEMO] Gửi tin nhắn Telegram:', message);
+                return true;
+            }
+            
+            try {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const payload = {
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                };
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                return data.ok;
+            } catch (error) {
+                console.error('❌ Lỗi gửi Telegram:', error);
+                return false;
+            }
+        }
+
+        // ==================== LƯU VÀO LỊCH SỬ ====================
+        function saveToHistory(transaction) {
+            let history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+            history.unshift(transaction);
+            if (history.length > 100) {
+                history = history.slice(0, 100);
+            }
+            localStorage.setItem('rechargeHistory', JSON.stringify(history));
+        }
+
+        // ==================== HÀM TIỆN ÍCH ====================
+        function generateTransactionId() {
+            const timestamp = new Date().getTime().toString().slice(-6);
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `TD${timestamp}${random}`;
+        }
+
+        function formatCurrency(amount) {
+            return parseInt(amount).toLocaleString('vi-VN');
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleString('vi-VN');
+        }
+
+        function getPaymentMethod(method) {
+            const methods = {
+                'momo': 'Ví MoMo',
+                'zalo': 'Ví ZaloPay',
+                'bank': 'Chuyển khoản',
+                'card': 'Thẻ cào'
+            };
+            return methods[method] || method;
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                'completed': 'Thành công',
+                'pending': 'Đang chờ',
+                'cancelled': 'Đã hủy',
+                'expired': 'Hết hạn'
+            };
+            return texts[status] || status;
+        }
+
+        // ==================== CSS ANIMATION ====================
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

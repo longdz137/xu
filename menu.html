@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 TikTok Coin Premium - Bảng giá nạp xu cao cấp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF0050;
+            --secondary: #00F2EA;
+            --accent: #FFD700;
+            --success: #00FF88;
+            --dark: #0F0F15;
+            --darker: #0A0A0F;
+            --light: #F5F5FF;
+            --gray: #8A8AA3;
+            --card-bg: rgba(20, 20, 30, 0.9);
+            --neon-glow: 0 0 20px rgba(255, 0, 80, 0.4);
+            --blue-glow: 0 0 20px rgba(0, 242, 234, 0.4);
+            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--darker);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 80, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 234, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 35%);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49.5%, rgba(255, 0, 80, 0.02) 50%, transparent 50.5%),
+                linear-gradient(transparent 49.5%, rgba(0, 242, 234, 0.02) 50%, transparent 50.5%);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* HEADER STYLES */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .logo-icon {
+            font-size: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(var(--neon-glow));
+        }
+        
+        .logo-text {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent), #FFAA00);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: var(--gold-glow);
+        }
+        
+        .main-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+        
+        .title-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        /* STATS SECTION */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--neon-glow);
+        }
+        
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 15px;
+            color: var(--gray);
+        }
+        
+        /* CURRENCY SELECTOR */
+        .currency-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .currency-option {
+            padding: 14px 32px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            color: var(--light);
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .currency-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .currency-option.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: transparent;
+            color: white;
+            box-shadow: var(--neon-glow);
+        }
+        
+        /* PRICING SECTION */
+        .pricing-section {
+            margin: 50px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            border-color: transparent;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), var(--neon-glow);
+        }
+        
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent), #FFAA00);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1px;
+            box-shadow: var(--gold-glow);
+        }
+        
+        .coin-display {
+            margin-bottom: 25px;
+        }
+        
+        .coin-amount {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .coin-label {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .price-display {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .current-price {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .original-price {
+            font-size: 1.3rem;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-bottom: 15px;
+        }
+        
+        .discount-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 5px 15px rgba(255, 0, 80, 0.3);
+        }
+        
+        .benefits-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .benefits-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-icon {
+            color: var(--success);
+            margin-right: 12px;
+            font-size: 16px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .bonus-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 170, 0, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .purchase-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+        }
+        
+        .purchase-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(255, 0, 80, 0.4);
+        }
+        
+        .purchase-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* PROMOTION BANNER */
+        .promotion-banner {
+            background: linear-gradient(135deg, rgba(255, 0, 80, 0.1), rgba(0, 242, 234, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 0, 80, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promotion-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .promotion-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .promotion-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .timer-unit {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 90px;
+        }
+        
+        .timer-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .timer-label {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* PAYMENT METHODS */
+        .payment-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .payment-method {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .payment-icon {
+            font-size: 32px;
+            color: var(--secondary);
+        }
+        
+        .payment-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .payment-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        /* FEATURES SECTION */
+        .features-section {
+            margin: 60px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .feature-desc {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 30px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1.02);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .main-title {
+                font-size: 2.4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .promotion-timer {
+                flex-wrap: wrap;
+            }
+            
+            .currency-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .currency-option {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="premium-badge">PREMIUM</div>
+            
+            <div class="logo-container">
+                <i class="fab fa-tiktok logo-icon"></i>
+                <h1 class="logo-text">TikTok Coin</h1>
+            </div>
+            
+            <h1 class="main-title">
+                Nạp xu <span class="title-gradient">TikTok Premium</span><br>
+                <span style="font-size: 1.8rem; color: var(--gray); font-weight: 400;">Ưu đãi đặc biệt dành riêng cho bạn</span>
+            </h1>
+            
+            <p class="subtitle">
+                Trải nghiệm dịch vụ nạp xu cao cấp với tốc độ xử lý siêu tốc, 
+                hỗ trợ 24/7 và nhiều ưu đãi độc quyền. Nhận xu ngay lập tức sau khi thanh toán.
+            </p>
+        </header>
+        
+        <!-- STATS SECTION -->
+        <div class="stats-section">
+            <div class="stat-card fade-in">
+                <i class="fas fa-users stat-icon"></i>
+                <div class="stat-value" id="user-count">150K+</div>
+                <div class="stat-label">Người dùng tin tưởng</div>
+            </div>
+            
+            <div class="stat-card fade-in">
+                <i class="fas fa-bolt stat-icon"></i>
+                <div class="stat-value" id="processing-time">3s</div>
+                <div class="stat-label">Xử lý giao dịch</div>
+            </div>
+            
+            <div class="stat-card fade-in">
+                <i class="fas fa-shield-alt stat-icon"></i>
+                <div class="stat-value" id="security-rate">100%</div>
+                <div class="stat-label">Bảo mật tuyệt đối</div>
+            </div>
+            
+            <div class="stat-card fade-in">
+                <i class="fas fa-headset stat-icon"></i>
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Hỗ trợ khách hàng</div>
+            </div>
+        </div>
+        
+        <!-- CURRENCY SELECTOR -->
+        <div class="currency-selector">
+            <div class="currency-option active" id="vnd-option">
+                <i class="fas fa-dong-sign"></i>
+                <span>VND (Việt Nam Đồng)</span>
+            </div>
+            
+            <div class="currency-option" id="usd-option">
+                <i class="fas fa-dollar-sign"></i>
+                <span>USD (Đô la Mỹ)</span>
+            </div>
+            
+            <div class="currency-option" id="crypto-option">
+                <i class="fas fa-coins"></i>
+                <span>Tiền điện tử</span>
+            </div>
+        </div>
+        
+        <!-- PROMOTION BANNER -->
+        <div class="promotion-banner fade-in">
+            <h3 class="promotion-title">⏰ ƯU ĐÃI ĐẶC BIỆT CHỈ CÒN</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Mua ngay để nhận thêm 10% giá trị đơn hàng!</p>
+            
+            <div class="promotion-timer">
+                <div class="timer-unit">
+                    <div class="timer-value" id="promo-hours">12</div>
+                    <div class="timer-label">Giờ</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="promo-minutes">45</div>
+                    <div class="timer-label">Phút</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="promo-seconds">30</div>
+                    <div class="timer-label">Giây</div>
+                </div>
+            </div>
+            
+            <button class="purchase-btn" style="max-width: 300px; margin: 0 auto;" onclick="showAllPackages()">
+                <i class="fas fa-gift"></i> XEM TẤT CẢ ƯU ĐÃI
+            </button>
+        </div>
+        
+        <!-- PRICING SECTION -->
+        <section class="pricing-section">
+            <div class="section-header">
+                <h2 class="section-title">Gói nạp xu ưu đãi</h2>
+                <p class="section-subtitle">Lựa chọn gói phù hợp với nhu cầu của bạn. Xu sẽ được cộng ngay lập tức sau khi thanh toán thành công.</p>
+            </div>
+            
+            <div class="pricing-grid" id="pricing-container">
+                <!-- Pricing cards will be loaded here -->
+            </div>
+        </section>
+        
+        <!-- FEATURES SECTION -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2 class="section-title">Tính năng cao cấp</h2>
+                <p class="section-subtitle">Trải nghiệm dịch vụ nạp xu với những tính năng đặc biệt chỉ có tại TikTok Coin Premium</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <i class="fas fa-bolt feature-icon"></i>
+                    <h3 class="feature-title">Xử lý siêu tốc</h3>
+                    <p class="feature-desc">Nhận xu ngay lập tức chỉ trong 3 giây sau khi thanh toán thành công.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3 class="feature-title">Bảo mật tuyệt đối</h3>
+                    <p class="feature-desc">Hệ thống bảo mật đa lớp, mã hóa toàn bộ thông tin giao dịch của bạn.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <i class="fas fa-headset feature-icon"></i>
+                    <h3 class="feature-title">Hỗ trợ 24/7</h3>
+                    <p class="feature-desc">Đội ngũ hỗ trợ chuyên nghiệp luôn sẵn sàng giải đáp mọi thắc mắc.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <i class="fas fa-gift feature-icon"></i>
+                    <h3 class="feature-title">Ưu đãi độc quyền</h3>
+                    <p class="feature-desc">Nhận thêm xu bonus và các ưu đãi đặc biệt chỉ dành cho khách hàng Premium.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PAYMENT METHODS -->
+        <section class="payment-section">
+            <div class="section-header">
+                <h2 class="section-title">Phương thức thanh toán</h2>
+                <p class="section-subtitle">Hỗ trợ đa dạng các phương thức thanh toán an toàn và tiện lợi</p>
+            </div>
+            
+            <div class="payment-grid">
+                <div class="payment-method">
+                    <i class="fas fa-credit-card payment-icon"></i>
+                    <div class="payment-info">
+                        <h4>Thẻ ngân hàng</h4>
+                        <p>VISA, Mastercard, JCB</p>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <i class="fas fa-mobile-alt payment-icon"></i>
+                    <div class="payment-info">
+                        <h4>Ví điện tử</h4>
+                        <p>Momo, ZaloPay, ViettelPay</p>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <i class="fas fa-sim-card payment-icon"></i>
+                    <div class="payment-info">
+                        <h4>Thẻ cào</h4>
+                        <p>Viettel, Mobifone, Vinaphone</p>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <i class="fab fa-bitcoin payment-icon"></i>
+                    <div class="payment-info">
+                        <h4>Tiền điện tử</h4>
+                        <p>BTC, ETH, USDT</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-logo">TikTok Coin Premium</div>
+            
+            <div class="footer-links">
+                <a href="#" class="footer-link">Về chúng tôi</a>
+                <a href="#" class="footer-link">Chính sách bảo mật</a>
+                <a href="#" class="footer-link">Điều khoản dịch vụ</a>
+                <a href="#" class="footer-link">Câu hỏi thường gặp</a>
+                <a href="#" class="footer-link">Liên hệ hỗ trợ</a>
+            </div>
+            
+            <div class="contact-info">
+                <p style="color: var(--gray); margin-bottom: 10px;">
+                    <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                    support@tiktokcoin.vip
+                </p>
+                <p style="color: var(--gray);">
+                    <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                    Hotline: 1900 8888
+                </p>
+            </div>
+            
+            <p class="copyright">
+                © 2024 TikTok Coin Premium. Đây là giao diện tham khảo, không phải trang chính thức của TikTok Inc.<br>
+                Tất cả giao dịch đều được bảo mật và xử lý tự động.
+            </p>
+        </footer>
+    </div>
+
+    <!-- PURCHASE MODAL -->
+    <div id="purchaseModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: var(--card-bg); padding: 40px; border-radius: 20px; max-width: 500px; width: 90%; border: 1px solid var(--primary); position: relative;">
+            <button onclick="closeModal()" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+            
+            <div style="text-align: center;">
+                <i class="fas fa-check-circle" style="font-size: 60px; color: var(--success); margin-bottom: 20px;"></i>
+                <h2 style="color: white; margin-bottom: 15px;">Thanh toán thành công!</h2>
+                <p style="color: var(--gray); margin-bottom: 10px;" id="purchaseDetails">Xu đã được cộng vào tài khoản của bạn.</p>
+                
+                <div style="background: rgba(0, 255, 136, 0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">
+                    <div style="font-weight: 700; color: var(--success);">
+                        <i class="fas fa-gift"></i> Bạn đã nhận thêm: <span id="bonusAmount">0</span> xu bonus
+                    </div>
+                </div>
+                
+                <button onclick="closeModal()" class="purchase-btn" style="margin-top: 20px;">
+                    <i class="fas fa-check"></i> Hoàn tất
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu gói nạp xu cao cấp
+        const premiumPackages = {
+            VND: [
+                {
+                    id: 1,
+                    coins: 500,
+                    label: "Xu TikTok",
+                    price: "119.000đ",
+                    originalPrice: "175.000đ",
+                    discount: "32%",
+                    featured: false,
+                    benefits: [
+                        "Nhận 500 xu ngay lập tức",
+                        "Tặng quà cho streamer yêu thích",
+                        "Hỗ trợ 24/7 qua chat",
+                        "Xử lý giao dịch trong 5s"
+                    ],
+                    bonus: 30
+                },
+                {
+                    id: 2,
+                    coins: 1000,
+                    label: "Xu TikTok",
+                    price: "229.000đ",
+                    originalPrice: "350.000đ",
+                    discount: "35%",
+                    featured: true,
+                    benefits: [
+                        "Nhận 1000 xu ngay lập tức",
+                        "Tặng quà cao cấp cho streamer",
+                        "Tiết kiệm lớn nhất - 35%",
+                        "Hỗ trợ VIP 24/7",
+                        "Xử lý giao dịch trong 3s",
+                        "Ưu tiên khách hàng VIP"
+                    ],
+                    bonus: 100
+                },
+                {
+                    id: 3,
+                    coins: 2000,
+                    label: "Xu TikTok",
+                    price: "439.000đ",
+                    originalPrice: "700.000đ",
+                    discount: "37%",
+                    featured: false,
+                    benefits: [
+                        "Nhận 2000 xu ngay lập tức",
+                        "Tặng quà đặc biệt và hiệu ứng độc quyền",
+                        "Tiết kiệm siêu khủng - 37%",
+                        "Hỗ trợ VIP riêng 24/7",
+                        "Xử lý giao dịch tức thì",
+                        "Ưu tiên khách hàng VIP ĐẶC BIỆT"
+                    ],
+                    bonus: 200
+                },
+                {
+                    id: 4,
+                    coins: 5000,
+                    label: "Xu TikTok",
+                    price: "999.000đ",
+                    originalPrice: "1.750.000đ",
+                    discount: "43%",
+                    featured: false,
+                    benefits: [
+                        "Nhận 5000 xu ngay lập tức",
+                        "Tặng quà VIP và hiệu ứng độc nhất",
+                        "Tiết kiệm cực đại - 43%",
+                        "Hỗ trợ VIP riêng biệt 24/7",
+                        "Xử lý giao dịch tức thì",
+                        "Quyền lợi khách hàng đặc biệt",
+                        "Tặng kèm gói quà đặc biệt"
+                    ],
+                    bonus: 500
+                }
+            ],
+            USD: [
+                {
+                    id: 1,
+                    coins: 500,
+                    label: "TikTok Coins",
+                    price: "$4.99",
+                    originalPrice: "$7.49",
+                    discount: "33%",
+                    featured: false,
+                    benefits: [
+                        "Receive 500 coins instantly",
+                        "Send gifts to favorite streamers",
+                        "24/7 chat support",
+                        "Transaction processed in 5s"
+                    ],
+                    bonus: 30
+                },
+                {
+                    id: 2,
+                    coins: 1000,
+                    label: "TikTok Coins",
+                    price: "$9.49",
+                    originalPrice: "$14.99",
+                    discount: "37%",
+                    featured: true,
+                    benefits: [
+                        "Receive 1000 coins instantly",
+                        "Send premium gifts to streamers",
+                        "Maximum savings - 37%",
+                        "VIP 24/7 support",
+                        "Transaction processed in 3s",
+                        "VIP customer priority"
+                    ],
+                    bonus: 100
+                },
+                {
+                    id: 3,
+                    coins: 2000,
+                    label: "TikTok Coins",
+                    price: "$18.49",
+                    originalPrice: "$29.99",
+                    discount: "38%",
+                    featured: false,
+                    benefits: [
+                        "Receive 2000 coins instantly",
+                        "Send special gifts with exclusive effects",
+                        "Super savings - 38%",
+                        "Dedicated VIP 24/7 support",
+                        "Instant transaction processing",
+                        "Special VIP customer priority"
+                    ],
+                    bonus: 200
+                },
+                {
+                    id: 4,
+                    coins: 5000,
+                    label: "TikTok Coins",
+                    price: "$44.99",
+                    originalPrice: "$79.99",
+                    discount: "44%",
+                    featured: false,
+                    benefits: [
+                        "Receive 5000 coins instantly",
+                        "Send VIP gifts with unique effects",
+                        "Ultimate savings - 44%",
+                        "Exclusive VIP 24/7 support",
+                        "Instant transaction processing",
+                        "Special VIP privileges",
+                        "Bonus gift package included"
+                    ],
+                    bonus: 500
+                }
+            ],
+            CRYPTO: [
+                {
+                    id: 1,
+                    coins: 500,
+                    label: "TikTok Coins",
+                    price: "0.0011 BTC",
+                    originalPrice: "0.0018 BTC",
+                    discount: "39%",
+                    featured: true,
+                    benefits: [
+                        "Receive 500 coins instantly",
+                        "Send gifts to streamers",
+                        "Anonymous payment option",
+                        "24/7 chat support",
+                        "Transaction processed in 5s"
+                    ],
+                    bonus: 50
+                },
+                {
+                    id: 2,
+                    coins: 1000,
+                    label: "TikTok Coins",
+                    price: "0.0021 BTC",
+                    originalPrice: "0.0035 BTC",
+                    discount: "40%",
+                    featured: false,
+                    benefits: [
+                        "Receive 1000 coins instantly",
+                        "Send premium gifts to streamers",
+                        "Anonymous payment option",
+                        "Maximum savings - 40%",
+                        "24/7 support",
+                        "Transaction processed in 3s"
+                    ],
+                    bonus: 100
+                }
+            ]
+        };
+        
+        let currentCurrency = 'VND';
+        let currentPackages = premiumPackages.VND;
+        
+        // Tạo HTML cho thẻ gói nạp
+        function createPricingCard(packageData) {
+            return `
+                <div class="pricing-card ${packageData.featured ? 'featured' : ''} fade-in">
+                    ${packageData.featured ? '<div class="featured-badge">ĐỀ XUẤT</div>' : ''}
+                    
+                    <div class="coin-display">
+                        <div class="coin-amount">${packageData.coins.toLocaleString()}</div>
+                        <div class="coin-label">${packageData.label}</div>
+                    </div>
+                    
+                    <div class="price-display">
+                        <div class="current-price">${packageData.price}</div>
+                        <div class="original-price">${packageData.originalPrice}</div>
+                        <div class="discount-tag">Tiết kiệm ${packageData.discount}</div>
+                    </div>
+                    
+                    <div class="bonus-badge">
+                        <i class="fas fa-gift"></i>
+                        <span>+${packageData.bonus} xu bonus</span>
+                    </div>
+                    
+                    <ul class="benefits-list">
+                        ${packageData.benefits.map(benefit => `
+                            <li>
+                                <i class="fas fa-check benefit-icon"></i>
+                                <span>${benefit}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                    
+                    <button class="purchase-btn" onclick="purchasePackage(${packageData.id})" data-currency="${currentCurrency}">
+                        <i class="fas fa-shopping-cart"></i> Mua ngay
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Hiển thị các gói nạp
+        function renderPricingCards() {
+            const container = document.getElementById('pricing-container');
+            container.innerHTML = '';
+            
+            currentPackages.forEach(packageData => {
+                container.innerHTML += createPricingCard(packageData);
+            });
+            
+            // Kích hoạt animation
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.style.animation = 'fadeInUp 0.6s ease forwards';
+                });
+            }, 100);
+        }
+        
+        // Chuyển đổi tiền tệ
+        function switchCurrency(currency) {
+            const vndOption = document.getElementById('vnd-option');
+            const usdOption = document.getElementById('usd-option');
+            const cryptoOption = document.getElementById('crypto-option');
+            
+            // Reset all options
+            [vndOption, usdOption, cryptoOption].forEach(option => option.classList.remove('active'));
+            
+            currentCurrency = currency;
+            currentPackages = premiumPackages[currency];
+            
+            // Activate selected option
+            document.getElementById(`${currency.toLowerCase()}-option`).classList.add('active');
+            
+            // Update button text
+            const buttons = document.querySelectorAll('.purchase-btn');
+            buttons.forEach(btn => {
+                if (currency === 'VND') {
+                    btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Mua ngay';
+                } else if (currency === 'USD') {
+                    btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Buy now';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Purchase with crypto';
+                }
+                btn.setAttribute('data-currency', currency);
+            });
+            
+            renderPricingCards();
+        }
+        
+        // Mua gói nạp
+        function purchasePackage(packageId) {
+            const packageData = currentPackages.find(pkg => pkg.id === packageId);
+            
+            // Hiệu ứng loading
+            const button = event.target.closest('.purchase-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+            button.disabled = true;
+            
+            // Tạo hiệu ứng
+            createConfetti();
+            
+            // Giả lập xử lý thanh toán
+            setTimeout(() => {
+                // Hiển thị modal thành công
+                showPurchaseModal(packageData);
+                
+                // Khôi phục button
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 1500);
+        }
+        
+        // Hiển thị modal thành công
+        function showPurchaseModal(packageData) {
+            const modal = document.getElementById('purchaseModal');
+            const details = document.getElementById('purchaseDetails');
+            const bonus = document.getElementById('bonusAmount');
+            
+            details.textContent = `Bạn đã mua thành công ${packageData.coins.toLocaleString()} ${packageData.label}!`;
+            bonus.textContent = packageData.bonus;
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Đóng modal
+        function closeModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+        
+        // Hiển thị tất cả gói
+        function showAllPackages() {
+            const pricingSection = document.querySelector('.pricing-section');
+            pricingSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Tạo hiệu ứng confetti
+        function createConfetti() {
+            const colors = ['#FF0050', '#00F2EA', '#FFD700', '#00FF88'];
+            
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = Math.random() * 12 + 4 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                confetti.style.opacity = Math.random() * 0.8 + 0.2;
+                confetti.style.zIndex = '9999';
+                
+                // Animation
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 1000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                document.body.appendChild(confetti);
+                
+                // Xóa confetti sau khi animation kết thúc
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+        
+        // Đếm ngược thời gian
+        function startCountdown() {
+            let hours = 12;
+            let minutes = 45;
+            let seconds = 30;
+            
+            const timer = setInterval(() => {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        
+                        if (hours < 0) {
+                            hours = 23;
+                            minutes = 59;
+                            seconds = 59;
+                        }
+                    }
+                }
+                
+                document.getElementById('promo-hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('promo-minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('promo-seconds').textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+        
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hiển thị gói nạp đầu tiên
+            renderPricingCards();
+            
+            // Bắt đầu đếm ngược
+            startCountdown();
+            
+            // Thêm sự kiện cho nút chuyển đổi tiền tệ
+            document.getElementById('vnd-option').addEventListener('click', () => switchCurrency('VND'));
+            document.getElementById('usd-option').addEventListener('click', () => switchCurrency('USD'));
+            document.getElementById('crypto-option').addEventListener('click', () => switchCurrency('CRYPTO'));
+            
+            // Hiệu ứng số đếm cho stats
+            const stats = [
+                { id: 'user-count', target: 150, suffix: 'K+' },
+                { id: 'processing-time', target: 3, suffix: 's' },
+                { id: 'security-rate', target: 100, suffix: '%' }
+            ];
+            
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                let current = 0;
+                const increment = stat.target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= stat.target) {
+                        current = stat.target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (stat.suffix === 'K+') {
+                        element.textContent = Math.floor(current) + stat.suffix;
+                    } else {
+                        element.textContent = Math.floor(current) + stat.suffix;
+                    }
+                }, 30);
+            });
+            
+            // Hiệu ứng scroll animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Quan sát tất cả elements có class fade-in
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
